@@ -1,27 +1,99 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <title>오늘도 잠은 망했습니다</title>
-  <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자니...? | 오늘도 잠은 망했습니다</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/game.css">
 </head>
 <body>
 
-  <header>
-    <nav>
-      <a href="index.html">메인</a>
-      <a href="team.html">팀 소개</a>
-      <a href="game.html">게임</a>
-      <a href="form.html">폼</a>
-      <a href="credit.html">엔딩 크레딧</a>
+    <!-- 달 (style.css에서 스타일 적용) -->
+    <div class="moon" aria-hidden="true"></div>
 
-    </nav>
-  </header>
+    <!-- 별똥별 (JS에서 span 동적 생성) -->
+    <div class="shooting-stars" aria-hidden="true"></div>
 
-  <main>
-    <h1>오늘도 잠은 망했습니다</h1>
-    <p>게임 페이지입니다.</p>
-  </main>
+    <!-- 상단 메뉴 -->
+    <header>
+        <h3>오늘도 잠은 망했습니다</h3>
+        <nav id="mainNav">
+            <a href="index.html">메인</a>
+            <a href="form.html">진단하기</a>
+            <a href="game.html" class="active">게임하기</a>
+            <a href="team.html">팀 소개</a>
+            <a href="credit.html">크레딧</a>
+        </nav>
+        <span class="header-logo">2AM</span>
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="메뉴 열기">☰</button>
+    </header>
 
+    <main>
+
+        <!-- ① 인트로 + 버전 선택 화면 -->
+        <section class="game-intro" id="gameIntro">
+            <h1>자니...?</h1>
+            <p class="game-subtitle">
+                새벽 3시, 보내면 안 되는 메시지를 보내고 싶은 당신을 위한 생존 게임.<br>
+
+            </p>
+
+            <div class="game-select-wrap">
+                <!-- 전여친 버전 -->
+                <div class="game-select-card" id="selectEx" role="button" tabindex="0">
+                    <div class="game-select-emoji">💙</div>
+                    <h2>전여친에게 연락하기</h2>
+                    <p>인스타 보니 나랑 헤어지고 나서 더 예뻐졌더라...</p>
+                </div>
+
+                <!-- 전남친 버전 -->
+                <div class="game-select-card" id="selectBf" role="button" tabindex="0">
+                    <div class="game-select-emoji">💜</div>
+                    <h2>전남친에게 연락하기</h2>
+                    <p>내 성격 받아주던 유일한 사람이었는데 헤어지지 말 걸.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ② 채팅 화면 (처음에 숨김) -->
+        <section class="game-chat-section" id="gameChatSection" style="display:none;">
+            <!-- 채팅 상단 상태바 -->
+            <div class="game-chat-header">
+                <span class="game-chat-status">● 온라인</span>
+                <span class="game-chat-name" id="chatName">전여친 💙</span>
+                <span class="game-chat-time" id="chatTime">오전 3:00</span>
+            </div>
+
+            <!-- 메시지가 여기에 동적으로 추가됨 -->
+            <div class="game-chat-box" id="chatBox"></div>
+
+            <!-- 선택지 버튼이 여기에 동적으로 추가됨 -->
+            <div class="game-choices" id="choicesArea"></div>
+        </section>
+
+        <!-- ③ 엔딩 화면 (처음에 숨김) -->
+        <section class="game-ending" id="gameEnding" style="display:none;">
+            <div class="game-ending-card">
+                <div class="game-ending-icon">🌙</div>
+                <p class="game-ending-label">ENDING</p>
+                <h2 class="game-ending-title" id="endingTitle"></h2>
+                <p class="game-ending-desc"  id="endingDesc"></p>
+                <div class="game-ending-btns">
+                    <button class="game-btn game-btn-restart" id="btnRestart">다시 선택하기</button>
+                    <button class="game-btn game-btn-main"    id="btnMain">메인으로</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <b>2AM</b>
+        <p>© 2026 Team 2AM. 오늘도 잠은 망했습니다.</p>
+        <span>Privacy Policy &nbsp; Terms of Service</span>
+    </footer>
+
+    <script src="js/game.js"></script>
 </body>
 </html>

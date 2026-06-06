@@ -1,26 +1,40 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <title>오늘도 잠은 망했습니다</title>
-  <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>오늘도 잠은 망했습니다</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-  <header>
-    <nav>
-      <a href="index.html">메인</a>
-      <a href="team.html">팀 소개</a>
-      <a href="game.html">게임</a>
-      <a href="form.html">폼</a>
-      <a href="credit.html">엔딩 크레딧</a>
-    </nav>
-  </header>
+    <div class="moon" aria-hidden="true"></div>
+    <div class="shooting-stars" aria-hidden="true"></div>
 
-  <main>
-    <h1>오늘도 잠은 망했습니다</h1>
-    <p>메인 페이지 입니다.</p>
-  </main>
+    <header>
+        <h3>오늘도 잠은 망했습니다</h3>
+        <nav id="mainNav">
+            <a href="index.html" class="active">메인</a>
+            <a href="form.html">진단하기</a>
+            <a href="game.html">게임하기</a>
+            <a href="team.html">팀 소개</a>
+            <a href="credit.html">크레딧</a>
+        </nav>
+        <span class="header-logo">2AM</span>
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="메뉴 열기" aria-expanded="false">☰</button>
+    </header>
 
+    <main>
+        <h1>오늘도 잠은 망했습니다</h1>
+        <p>메인 페이지입니다.</p>
+    </main>
+
+    <footer>
+        <b>2AM</b>
+        <p>© 2026 Team 2AM. 오늘도 잠은 망했습니다.</p>
+        <span>Privacy Policy &nbsp; Terms of Service</span>
+    </footer>
+
+    <script src="js/common.js"></script>
 </body>
 </html>

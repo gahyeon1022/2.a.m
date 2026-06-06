@@ -6,6 +6,8 @@ const resultModal = document.querySelector("#resultModal");
 const levelMessage = document.querySelector("#levelMessage");
 const levelNickname = document.querySelector("#levelNickname");
 const resultModalClose = document.querySelector("#resultModalClose");
+const menuToggle = document.querySelector("#menuToggle");
+const navigation = document.querySelector("header nav");
 const scores = Array(questions.length).fill(0);
 
 const shootingStarTops = [5, 31, 14, 43, 23, 8, 37, 18, 48, 27];
@@ -27,20 +29,27 @@ function updateCard(cardIndex, title, width, description) {
     card.querySelector("small").textContent = description;
 }
 
-const levelMessages = {
-    1: "Lv.1 😌 매우 안정",
-    2: "Lv.2 🟢 주의",
-    3: "Lv.3 🟡 경계",
-    4: "Lv.4 🟠 위험",
-    5: "Lv.5 🔴 매우 위험",
-};
-
-const levelNicknames = {
-    1: "😌 평범한 인간",
-    2: "☕ 감성 입문자",
-    3: "🌙 새벽 감성 폭발러",
-    4: "🎬 혼자 영화 감독",
-    5: "🌌 우주와 대화하는 자",
+const levelDetails = {
+    1: {
+        message: "Lv.1 😌 매우 안정",
+        nickname: "😌 평범한 인간",
+    },
+    2: {
+        message: "Lv.2 🟢 주의",
+        nickname: "☕ 감성 입문자",
+    },
+    3: {
+        message: "Lv.3 🟡 경계",
+        nickname: "🌙 새벽 감성 폭발러",
+    },
+    4: {
+        message: "Lv.4 🟠 위험",
+        nickname: "🎬 혼자 영화 감독",
+    },
+    5: {
+        message: "Lv.5 🔴 매우 위험",
+        nickname: "🌌 우주와 대화하는 자",
+    },
 };
 
 function closeResultModal() {
@@ -49,8 +58,10 @@ function closeResultModal() {
 }
 
 function openResultModal(level) {
-    levelMessage.textContent = levelMessages[level];
-    levelNickname.textContent = levelNicknames[level];
+    const { message, nickname } = levelDetails[level];
+
+    levelMessage.textContent = message;
+    levelNickname.textContent = nickname;
     resultModal.classList.add("show");
     resultModal.setAttribute("aria-hidden", "false");
     resultModalClose.focus();
@@ -70,6 +81,13 @@ document.addEventListener("keydown", (event) => {
     }
 });
 
+menuToggle.addEventListener("click", () => {
+    const isOpen = navigation.classList.toggle("show");
+
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+    menuToggle.setAttribute("aria-label", isOpen ? "메뉴 닫기" : "메뉴 열기");
+});
+
 function getResultText(percent) {
     if (percent >= 90) {
         return {
@@ -77,7 +95,6 @@ function getResultText(percent) {
             sleep: "원인: 생각이 꼬리에 꼬리를 무는 중",
             regret: "MAX",
             regretText: "내일 아침 이불킥 예약입니다.",
-            sns: "Lv. 5",
             snsLevel: 5,
             snsText: "전여친 연락, 감성글 업로드 절대 금지",
         };
@@ -89,7 +106,6 @@ function getResultText(percent) {
             sleep: "원인: '딱 하나만 더' 증후군",
             regret: "HIGH",
             regretText: "지금 보내면 내일 후회할 가능성 큼.",
-            sns: "Lv. 4",
             snsLevel: 4,
             snsText: "스토리 올리기 전 물 한 잔 마시세요.",
         };
@@ -101,7 +117,6 @@ function getResultText(percent) {
             sleep: "원인: 누워서 생각 많음",
             regret: "MID",
             regretText: "아직은 돌아올 수 있습니다.",
-            sns: "Lv. 3",
             snsLevel: 3,
             snsText: "의미심장한 글은 임시저장까지만.",
         };
@@ -113,7 +128,6 @@ function getResultText(percent) {
             sleep: "원인: 잠은 오는데 폰을 못 놓음",
             regret: "LOW",
             regretText: "조금만 정신 차리면 괜찮습니다.",
-            sns: "Lv. 2",
             snsLevel: 2,
             snsText: "릴스 3개만 보고 끄세요. 진짜로.",
         };
@@ -124,7 +138,6 @@ function getResultText(percent) {
         sleep: "원인: 오늘은 꽤 멀쩡함",
         regret: "SAFE",
         regretText: "내일 아침의 나도 안심 가능.",
-        sns: "Lv. 1",
         snsLevel: 1,
         snsText: "SNS에 이상한 글 올릴 확률 낮음",
     };
@@ -163,7 +176,12 @@ analyzeBtn.addEventListener("click", () => {
     updateCard(0, `${percent}%`, percent, result.emotion);
     updateCard(1, `${sleepPercent}%`, sleepPercent, result.sleep);
     updateCard(2, result.regret, percent, result.regretText);
-    updateCard(3, result.sns, result.snsLevel * 20, result.snsText);
+    updateCard(
+        3,
+        `Lv. ${result.snsLevel}`,
+        result.snsLevel * 20,
+        result.snsText,
+    );
 
     openResultModal(result.snsLevel);
 });

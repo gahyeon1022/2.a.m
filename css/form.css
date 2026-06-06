@@ -580,6 +580,89 @@ button:hover{
     color:var(--muted);
 }
 
+/* ================= RESULT MODAL ================= */
+
+.result-modal{
+    position:fixed;
+    inset:0;
+    z-index:10;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:24px;
+    background:rgba(2,6,23,0.72);
+    backdrop-filter:blur(8px);
+    opacity:0;
+    visibility:hidden;
+    transition:opacity 0.3s, visibility 0.3s;
+}
+
+.result-modal.show{
+    opacity:1;
+    visibility:visible;
+}
+
+.result-modal-card{
+    width:min(100%, 480px);
+    padding:44px 32px 34px;
+    border:1px solid rgba(196,181,253,0.5);
+    border-radius:24px;
+    background:
+        radial-gradient(circle at 50% 0%, rgba(167,139,250,0.25), transparent 42%),
+        linear-gradient(145deg, rgba(15,23,42,0.97), rgba(30,20,70,0.96));
+    box-shadow:
+        0 0 40px rgba(129,140,248,0.3),
+        0 24px 80px rgba(0,0,0,0.55),
+        inset 0 1px 0 rgba(255,255,255,0.14);
+    text-align:center;
+    transform:translateY(20px) scale(0.96);
+    transition:transform 0.3s;
+}
+
+.result-modal.show .result-modal-card{
+    transform:translateY(0) scale(1);
+}
+
+.result-modal-star{
+    display:block;
+    margin-bottom:16px;
+    color:#fde68a;
+    font-size:42px;
+    text-shadow:0 0 18px rgba(253,224,71,0.8);
+}
+
+.result-modal-card p{
+    color:var(--muted);
+    font-size:14px;
+    letter-spacing:0.12em;
+}
+
+.result-modal-card h2{
+    margin:14px 0 22px;
+    font-size:clamp(24px, 4vw, 31px);
+    line-height:1.4;
+    color:#fff;
+}
+
+.level-nickname{
+    display:block;
+    color:#f5f3ff;
+    font-size:clamp(27px, 5vw, 36px);
+    font-weight:800;
+    line-height:1.25;
+    letter-spacing:-0.04em;
+    white-space:nowrap;
+    text-shadow:
+        0 0 12px rgba(255,255,255,0.28),
+        0 0 28px rgba(167,139,250,0.65);
+}
+
+.result-modal-close{
+    width:180px;
+    height:52px;
+    margin:36px auto 0;
+}
+
 /* ================= FOOTER ================= */
 
 footer{

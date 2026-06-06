@@ -101,7 +101,7 @@
           <option value="talker">수다쟁이형🗣️</option>
           <option value="social-butterfly">인싸형🤝</option>
           <option value="singer">가수데뷔형🎤</option>
-          <option value="caller">연락충💌</option>
+          <option value="caller">연락충🫨</option>
         </select>
       </div>
     </section>
@@ -148,6 +148,16 @@
     <p>© 2026 Team 2AM. 오늘도 잠은 망했습니다.</p>
     <span>Privacy Policy &nbsp; Terms of Service</span>
   </footer>
+
+  <div class="result-modal" id="resultModal" aria-hidden="true">
+    <div class="result-modal-card" role="dialog" aria-modal="true" aria-labelledby="levelMessage">
+      <span class="result-modal-star" aria-hidden="true">✦</span>
+      <p>감성 위험도</p>
+      <h2 id="levelMessage"></h2>
+      <strong class="level-nickname" id="levelNickname"></strong>
+      <button class="result-modal-close" id="resultModalClose" type="button">결과 확인하기</button>
+    </div>
+  </div>
 
   <script src="js/form.js"></script>
 </body>

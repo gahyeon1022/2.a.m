@@ -517,17 +517,19 @@ footer {
     top: 48px;
     right: 26px;
     z-index: 20;
-    animation: cricketFloat 7.5s ease-in-out infinite;
+    animation: cricketFloat 24s ease-in-out infinite;
     transform-origin: center;
 }
 
-.music-toggle {
+.music-player .music-toggle {
+    display: block;
     width: 58px;
     height: 58px;
+    margin: 0;
     border: 0;
     border-radius: 0;
     padding: 0;
-    background: url("../asset/cricket.svg") center / contain no-repeat;
+    background: url("../asset/cricket.svg") center / contain no-repeat transparent;
     color: var(--text);
     font: inherit;
     font-size: 0;
@@ -535,15 +537,20 @@ footer {
     cursor: pointer;
     transform-origin: 50% 82%;
     animation: cricketSway 7.5s ease-in-out infinite;
+    box-shadow: none;
+    overflow: hidden;
+    appearance: none;
+    -webkit-appearance: none;
     transition: filter 0.2s ease, transform 0.2s ease;
 }
 
-.music-toggle:hover {
+.music-player .music-toggle:hover {
+    background: url("../asset/cricket.svg") center / contain no-repeat transparent;
     animation-play-state: paused;
     transform: translateY(-3px) rotate(-5deg) scale(1.05);
 }
 
-.music-toggle.is-playing {
+.music-player .music-toggle.is-playing {
     filter:
         drop-shadow(0 12px 18px rgba(2, 6, 23, 0.36))
         drop-shadow(0 0 16px rgba(185, 231, 90, 0.48));
@@ -562,14 +569,17 @@ footer {
     0%, 100% {
         transform: translate3d(0, 0, 0);
     }
-    25% {
-        transform: translate3d(-34px, -10px, 0);
+    18% {
+        transform: translate3d(-18vw, 18vh, 0);
     }
-    50% {
-        transform: translate3d(-68px, -2px, 0);
+    42% {
+        transform: translate3d(-46vw, 4vh, 0);
     }
-    75% {
-        transform: translate3d(-28px, 4px, 0);
+    68% {
+        transform: translate3d(-72vw, 34vh, 0);
+    }
+    86% {
+        transform: translate3d(-28vw, 10vh, 0);
     }
 }
 
@@ -745,11 +755,30 @@ footer {
     .music-player {
         top: 58px;
         right: 12px;
+        animation-name: cricketFloatMobile;
     }
 
-    .music-toggle {
+    .music-player .music-toggle {
         width: 46px;
         height: 46px;
+    }
+
+    @keyframes cricketFloatMobile {
+        0%, 100% {
+            transform: translate3d(0, 0, 0);
+        }
+        22% {
+            transform: translate3d(-18vw, 15vh, 0);
+        }
+        48% {
+            transform: translate3d(-46vw, 4vh, 0);
+        }
+        72% {
+            transform: translate3d(-72vw, 28vh, 0);
+        }
+        88% {
+            transform: translate3d(-30vw, 10vh, 0);
+        }
     }
 
 }

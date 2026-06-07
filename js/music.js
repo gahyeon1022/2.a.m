@@ -1,5 +1,5 @@
 // music.js — 모든 페이지 공통 새벽 배경음악 컨트롤
-var musicVideoId = "RTDWAE5zXcU";
+var musicVideoId = "n7N3kWbIux0";
 var musicStorageKey = "twoAmMusicPlaying";
 var musicPlayer = document.getElementById("musicPlayer");
 var musicButton = document.getElementById("musicToggle");

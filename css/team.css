@@ -102,7 +102,7 @@
     display: block;
 }
 
-/* ===== 진단 결과 오버레이 (사진 위에 반투명으로 덮음) ===== */
+/* ===== 멘트 오버레이 (사진 위에 반투명으로 덮음) ===== */
 .team-stats {
     position: absolute;
     inset: 0;
@@ -110,9 +110,8 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 12px;
-    padding: 22px 20px 56px;
-    list-style: none;
+    align-items: center;
+    padding: 28px 24px 56px;
     color: var(--text);
     /* 사진을 어둡게 가려 가독성 확보 */
     background: linear-gradient(160deg, rgba(7, 16, 31, 0.86), rgba(9, 13, 37, 0.9));
@@ -123,21 +122,23 @@
     display: none;
 }
 
-.team-stats ul {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 13px;
+/* 멘트 — 따옴표로 감싼 한마디 */
+.team-quote {
+    position: relative;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 1.7;
+    text-align: center;
+    color: #f8fafc;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
-.team-stats-title {
-    margin-bottom: 4px;
-    font-size: 12px;
-    font-weight: bold;
-    letter-spacing: 0.06em;
-    text-align: center;
-    color: #c7d2fe;
-    text-transform: uppercase;
+.team-quote::before {
+    content: "\201C";   /* 여는 큰따옴표 “ */
+}
+
+.team-quote::after {
+    content: "\201D";   /* 닫는 큰따옴표 ” */
 }
 
 /* 펼칠 때 부드럽게 등장 */
@@ -257,43 +258,6 @@
 /* 펼친 상태에서는 닫기 버튼이 결과 위로 잘 보이게 */
 .team-card.is-open .team-toggle {
     background: rgba(7, 16, 31, 0.72);
-}
-
-/* ===== 진단 결과 4개 바 (오버레이 내부) ===== */
-.team-stat-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    margin-bottom: 7px;
-    font-size: 13px;
-}
-
-.team-stat-top span {
-    color: var(--muted);
-}
-
-.team-stat-top b {
-    font-size: 13px;
-    font-weight: bold;
-    letter-spacing: 0.02em;
-    color: var(--text);
-}
-
-/* 바 트랙 */
-.team-bar {
-    height: 8px;
-    border-radius: 999px;
-    background: rgba(2, 6, 23, 0.5);
-    border: 1px solid var(--line);
-    overflow: hidden;
-}
-
-/* 바 채움 — form 페이지 결과 바와 동일한 블루→퍼플 그라데이션 */
-.team-bar-fill {
-    height: 100%;
-    border-radius: 999px;
-    background: linear-gradient(90deg, var(--blue) 0%, var(--purple) 100%);
-    box-shadow: 0 0 10px rgba(129, 140, 248, 0.5);
 }
 
 /* ===== 태블릿 (2열) ===== */

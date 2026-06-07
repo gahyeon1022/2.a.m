@@ -8,6 +8,7 @@ const levelNickname = document.querySelector("#levelNickname");
 const resultModalClose = document.querySelector("#resultModalClose");
 const menuToggle = document.querySelector("#menuToggle");
 const navigation = document.querySelector("header nav");
+const resultSection = document.querySelector(".result");
 const scores = Array(questions.length).fill(0);
 const diagnosisStorageKey = "twoAmDiagnosisResult";
 
@@ -58,6 +59,13 @@ function closeResultModal() {
     resultModal.setAttribute("aria-hidden", "true");
 }
 
+function scrollToResult() {
+    resultSection.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+    });
+}
+
 function openResultModal(level) {
     const { message, nickname } = levelDetails[level];
 
@@ -68,7 +76,10 @@ function openResultModal(level) {
     resultModalClose.focus();
 }
 
-resultModalClose.addEventListener("click", closeResultModal);
+resultModalClose.addEventListener("click", () => {
+    closeResultModal();
+    scrollToResult();
+});
 
 resultModal.addEventListener("click", (event) => {
     if (event.target === resultModal) {

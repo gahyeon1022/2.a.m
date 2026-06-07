@@ -194,7 +194,8 @@ analyzeBtn.addEventListener("click", () => {
     const basePercent = Math.round(
         ((total - minimumScore) / (maximumScore - minimumScore)) * 100,
     );
-    const drinkingStyleBonus = drinkingStyle.value === "caller" ? 5 : 0;
+    const riskyDrinkingStyles = ["caller", "confession", "emotional-speeding"];
+    const drinkingStyleBonus = riskyDrinkingStyles.includes(drinkingStyle.value) ? 5 : 0;
     const percent = Math.min(basePercent + drinkingStyleBonus, 100);
     const sleepPercent = Math.min(percent + 10, 100);
     const result = getResultText(percent);

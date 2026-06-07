@@ -163,6 +163,68 @@ button:hover {
     background: #8b5cf6;
 }
 
+#analyzeBtn {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #7c3aed, #a78bfa, #6d5dfc);
+    border-bottom: 4px solid #4c1d95;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.36),
+        0 8px 0 rgba(49, 30, 100, 0.72),
+        0 14px 22px rgba(15, 23, 42, 0.34),
+        0 0 12px rgba(167, 139, 250, 0.36),
+        0 0 26px rgba(167, 139, 250, 0.18);
+    transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+
+#analyzeBtn::before {
+    content: "";
+    position: absolute;
+    top: -45%;
+    left: -80%;
+    width: 48%;
+    height: 190%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.46),
+        transparent
+    );
+    transform: rotate(24deg);
+    animation: buttonShine 2.8s ease-in-out infinite;
+}
+
+#analyzeBtn:hover {
+    background: linear-gradient(135deg, #8b5cf6, #c4b5fd, #7c3aed);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.42),
+        0 8px 0 rgba(49, 30, 100, 0.72),
+        0 16px 26px rgba(15, 23, 42, 0.38),
+        0 0 16px rgba(167, 139, 250, 0.52),
+        0 0 34px rgba(167, 139, 250, 0.28);
+}
+
+#analyzeBtn:active {
+    transform: translateY(5px);
+    border-bottom-width: 2px;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.28),
+        0 3px 0 rgba(49, 30, 100, 0.72),
+        0 8px 16px rgba(15, 23, 42, 0.3),
+        0 0 12px rgba(167, 139, 250, 0.36);
+}
+
+@keyframes buttonShine {
+    0% {
+        left: -80%;
+    }
+
+    45%,
+    100% {
+        left: 130%;
+    }
+}
+
 /* ===== 결과 영역 ===== */
 .result h2 {
     text-align: center;
@@ -284,6 +346,30 @@ button:hover {
     width: 180px;
     height: 52px;
     margin: 36px auto 0;
+    background: linear-gradient(135deg, #7c3aed, #a78bfa);
+    border-bottom: 3px solid #5b21b6;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.26),
+        0 4px 0 rgba(49, 30, 100, 0.58),
+        0 10px 16px rgba(15, 23, 42, 0.22);
+    transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+
+.result-modal-close:hover {
+    background: linear-gradient(135deg, #8b5cf6, #bda7ff);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.32),
+        0 4px 0 rgba(49, 30, 100, 0.58),
+        0 12px 18px rgba(15, 23, 42, 0.25);
+}
+
+.result-modal-close:active {
+    transform: translateY(3px);
+    border-bottom-width: 1px;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        0 2px 0 rgba(49, 30, 100, 0.58),
+        0 6px 12px rgba(15, 23, 42, 0.2);
 }
 
 /* ===== 모바일 (form 전용) ===== */

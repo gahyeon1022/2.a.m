@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>팀 소개 | 오늘도 잠은 망했습니다</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/team.css">
 </head>
 <body>
 
@@ -14,7 +15,7 @@
     <header>
         <h3>오늘도 잠은 망했습니다</h3>
         <nav id="mainNav">
-            <a href="index.html">메인</a>
+            <a href="main.html">메인</a>
             <a href="form.html">진단하기</a>
             <a href="game.html">게임하기</a>
             <a href="team.html" class="active">팀 소개</a>
@@ -24,9 +25,225 @@
         <button class="menu-toggle" id="menuToggle" type="button" aria-label="메뉴 열기" aria-expanded="false">☰</button>
     </header>
 
-    <main>
-        <h1>팀 소개</h1>
-        <p>팀 페이지입니다.</p>
+    <main class="team-main">
+
+        <!-- ① 페이지 타이틀 -->
+        <section class="team-intro">
+            <h1 class="team-title">Team 2AM</h1>
+            <p class="team-subtitle">
+                새벽 2시, 잠들지 못한 다섯 명이 모였습니다.<br>
+                각자의 방식으로 밤을 새우는 우리를 소개합니다.
+            </p>
+            <p class="team-intro-note">
+                ※ 유형은 <a href="form.html">새벽 감성 지수 진단</a> 결과를 기준으로 합니다.
+            </p>
+        </section>
+
+        <!-- ② 팀원 카드 그리드 -->
+        <section class="team-grid">
+
+            <!-- 박가현 -->
+            <article class="team-card">
+                <div class="team-card-photo">
+                    <img src="asset/gahyeon.jpg" alt="박가현" loading="lazy">
+                    <div class="team-stats" id="stats-gahyeon" hidden>
+                        <p class="team-stats-title">새벽 감성 지수 리포트</p>
+                        <ul>
+                            <li class="team-stat">
+                                <div class="team-stat-top"><span>새벽 감성도</span><b>64%</b></div>
+                                <div class="team-bar"><div class="team-bar-fill" style="width:64%"></div></div>
+                            </li>
+                            <li class="team-stat">
+                                <div class="team-stat-top"><span>수면 실패 확률</span><b>74%</b></div>
+                                <div class="team-bar"><div class="team-bar-fill" style="width:74%"></div></div>
+                            </li>
+                            <li class="team-stat">
+                                <div class="team-stat-top"><span>후회 지수</span><b>MID</b></div>
+                                <div class="team-bar"><div class="team-bar-fill" style="width:60%"></div></div>
+                            </li>
+                            <li class="team-stat">
+                                <div class="team-stat-top"><span>SNS 위험도</span><b>Lv.3</b></div>
+                                <div class="team-bar"><div class="team-bar-fill" style="width:60%"></div></div>
+                            </li>
+                        </ul>
+                    </div>
+                    <button type="button" class="team-toggle" aria-expanded="false" aria-controls="stats-gahyeon">
+                        <span class="team-toggle-icon" aria-hidden="true">📊</span>
+                        <span class="team-toggle-text">감성지수</span>
+                    </button>
+                </div>
+
+                <div class="team-card-id">
+                    <h2 class="team-card-name">박가현 <span class="team-card-role">기획·팀장</span></h2>
+                    <p class="team-card-no">20231047</p>
+                    <p class="team-card-dept">소프트웨어학부</p>
+                </div>
+
+                <span class="team-card-level lv3">🌙 새벽 감성 폭발러 · Lv.3</span>
+            </article>
+
+            <!-- 전희재 -->
+            <article class="team-card">
+                <div class="team-card-photo">
+                    <img src="asset/heejae.jpg" alt="전희재" loading="lazy">
+                    <div class="team-stats" id="stats-heejae" hidden>
+                        <p class="team-stats-title">새벽 감성 지수 리포트</p>
+                        <ul>
+                            <li class="team-stat">
+                                <div class="team-stat-top"><span>새벽 감성도</span><b>41%</b></div>
+                                <div class="team-bar"><div class="team-bar-fill" style="width:41%"></div></div>
+                            </li>
+                            <li class="team-stat">
+                                <div class="team-stat-top"><span>수면 실패 확률</span><b>51%</b></div>
+                                <div class="team-bar"><div class="team-bar-fill" style="width:51%"></div></div>
+                            </li>
+                            <li class="team-stat">
+                                <div class="team-stat-top"><span>후회 지수</span><b>LOW</b></div>
+                                <div class="team-bar"><div class="team-bar-fill" style="width:40%"></div></div>
+                            </li>
+                            <li class="team-stat">
+                                <div class="team-stat-top"><span>SNS 위험도</span><b>Lv.2</b></div>
+                                <div class="team-bar"><div class="team-bar-fill" style="width:40%"></div></div>
+                            </li>
+                        </ul>
+                    </div>
+                    <button type="button" class="team-toggle" aria-expanded="false" aria-controls="stats-heejae">
+                        <span class="team-toggle-icon" aria-hidden="true">📊</span>
+                        <span class="team-toggle-text">감성지수</span>
+                    </button>
+                </div>
+
+                <div class="team-card-id">
+                    <h2 class="team-card-name">전희재 <span class="team-card-role">디자인</span></h2>
+                    <p class="team-card-no">20231052</p>
+                    <p class="team-card-dept">소프트웨어학부</p>
+                </div>
+
+                <span class="team-card-level lv2">☕ 감성 입문자 · Lv.2</span>
+            </article>
+
+            <!-- 박유빈 -->
+            <article class="team-card">
+                <div class="team-card-photo">
+                    <img src="asset/yubin.jpg" alt="박유빈" loading="lazy">
+                    <div class="team-stats" id="stats-yubin" hidden>
+                        <p class="team-stats-title">새벽 감성 지수 리포트</p>
+                        <ul>
+                            <li class="team-stat">
+                                <div class="team-stat-top"><span>새벽 감성도</span><b>22%</b></div>
+                                <div class="team-bar"><div class="team-bar-fill" style="width:22%"></div></div>
+                            </li>
+                            <li class="team-stat">
+                                <div class="team-stat-top"><span>수면 실패 확률</span><b>32%</b></div>
+                                <div class="team-bar"><div class="team-bar-fill" style="width:32%"></div></div>
+                            </li>
+                            <li class="team-stat">
+                                <div class="team-stat-top"><span>후회 지수</span><b>SAFE</b></div>
+                                <div class="team-bar"><div class="team-bar-fill" style="width:20%"></div></div>
+                            </li>
+                            <li class="team-stat">
+                                <div class="team-stat-top"><span>SNS 위험도</span><b>Lv.1</b></div>
+                                <div class="team-bar"><div class="team-bar-fill" style="width:20%"></div></div>
+                            </li>
+                        </ul>
+                    </div>
+                    <button type="button" class="team-toggle" aria-expanded="false" aria-controls="stats-yubin">
+                        <span class="team-toggle-icon" aria-hidden="true">📊</span>
+                        <span class="team-toggle-text">감성지수</span>
+                    </button>
+                </div>
+
+                <div class="team-card-id">
+                    <h2 class="team-card-name">박유빈 <span class="team-card-role">퍼블리싱</span></h2>
+                    <p class="team-card-no">20231019</p>
+                    <p class="team-card-dept">소프트웨어학부</p>
+                </div>
+
+                <span class="team-card-level lv1">😌 평범한 인간 · Lv.1</span>
+            </article>
+
+            <!-- 김형민 -->
+            <article class="team-card">
+                <div class="team-card-photo">
+                    <img src="asset/hyeongmin.jpg" alt="김형민" loading="lazy">
+                    <div class="team-stats" id="stats-hyeongmin" hidden>
+                        <p class="team-stats-title">새벽 감성 지수 리포트</p>
+                        <ul>
+                            <li class="team-stat">
+                                <div class="team-stat-top"><span>새벽 감성도</span><b>82%</b></div>
+                                <div class="team-bar"><div class="team-bar-fill" style="width:82%"></div></div>
+                            </li>
+                            <li class="team-stat">
+                                <div class="team-stat-top"><span>수면 실패 확률</span><b>92%</b></div>
+                                <div class="team-bar"><div class="team-bar-fill" style="width:92%"></div></div>
+                            </li>
+                            <li class="team-stat">
+                                <div class="team-stat-top"><span>후회 지수</span><b>HIGH</b></div>
+                                <div class="team-bar"><div class="team-bar-fill" style="width:80%"></div></div>
+                            </li>
+                            <li class="team-stat">
+                                <div class="team-stat-top"><span>SNS 위험도</span><b>Lv.4</b></div>
+                                <div class="team-bar"><div class="team-bar-fill" style="width:80%"></div></div>
+                            </li>
+                        </ul>
+                    </div>
+                    <button type="button" class="team-toggle" aria-expanded="false" aria-controls="stats-hyeongmin">
+                        <span class="team-toggle-icon" aria-hidden="true">📊</span>
+                        <span class="team-toggle-text">감성지수</span>
+                    </button>
+                </div>
+
+                <div class="team-card-id">
+                    <h2 class="team-card-name">김형민 <span class="team-card-role">개발</span></h2>
+                    <p class="team-card-no">20231033</p>
+                    <p class="team-card-dept">소프트웨어학부</p>
+                </div>
+
+                <span class="team-card-level lv4">🎬 혼자 영화 감독 · Lv.4</span>
+            </article>
+
+            <!-- 박정환 -->
+            <article class="team-card">
+                <div class="team-card-photo">
+                    <img src="asset/junghwan.jpg" alt="박정환" loading="lazy">
+                    <div class="team-stats" id="stats-junghwan" hidden>
+                        <p class="team-stats-title">새벽 감성 지수 리포트</p>
+                        <ul>
+                            <li class="team-stat">
+                                <div class="team-stat-top"><span>새벽 감성도</span><b>95%</b></div>
+                                <div class="team-bar"><div class="team-bar-fill" style="width:95%"></div></div>
+                            </li>
+                            <li class="team-stat">
+                                <div class="team-stat-top"><span>수면 실패 확률</span><b>100%</b></div>
+                                <div class="team-bar"><div class="team-bar-fill" style="width:100%"></div></div>
+                            </li>
+                            <li class="team-stat">
+                                <div class="team-stat-top"><span>후회 지수</span><b>MAX</b></div>
+                                <div class="team-bar"><div class="team-bar-fill" style="width:100%"></div></div>
+                            </li>
+                            <li class="team-stat">
+                                <div class="team-stat-top"><span>SNS 위험도</span><b>Lv.5</b></div>
+                                <div class="team-bar"><div class="team-bar-fill" style="width:100%"></div></div>
+                            </li>
+                        </ul>
+                    </div>
+                    <button type="button" class="team-toggle" aria-expanded="false" aria-controls="stats-junghwan">
+                        <span class="team-toggle-icon" aria-hidden="true">📊</span>
+                        <span class="team-toggle-text">감성지수</span>
+                    </button>
+                </div>
+
+                <div class="team-card-id">
+                    <h2 class="team-card-name">박정환 <span class="team-card-role">개발</span></h2>
+                    <p class="team-card-no">20231061</p>
+                    <p class="team-card-dept">소프트웨어학부</p>
+                </div>
+
+                <span class="team-card-level lv5">🌌 우주와 대화하는 자 · Lv.5</span>
+            </article>
+
+        </section>
+
     </main>
 
     <footer>
@@ -36,5 +253,6 @@
     </footer>
 
     <script src="js/common.js"></script>
+    <script src="js/team.js"></script>
 </body>
 </html>

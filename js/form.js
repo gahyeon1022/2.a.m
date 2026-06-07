@@ -9,6 +9,7 @@ const resultModalClose = document.querySelector("#resultModalClose");
 const menuToggle = document.querySelector("#menuToggle");
 const navigation = document.querySelector("header nav");
 const scores = Array(questions.length).fill(0);
+const diagnosisStorageKey = "twoAmDiagnosisResult";
 
 const shootingStarTops = [5, 31, 14, 43, 23, 8, 37, 18, 48, 27];
 const shootingStars = document.querySelector(".shooting-stars");
@@ -143,6 +144,20 @@ function getResultText(percent) {
     };
 }
 
+function saveDiagnosisResult(result) {
+    localStorage.setItem(diagnosisStorageKey, JSON.stringify({
+        emotionPercent: result.emotionPercent,
+        sleepPercent: result.sleepPercent,
+        regret: result.regret,
+        regretText: result.regretText,
+        snsLevel: result.snsLevel,
+        snsText: result.snsText,
+        emotionText: result.emotionText,
+        sleepText: result.sleepText,
+        updatedAt: new Date().toISOString(),
+    }));
+}
+
 questions.forEach((question, index) => {
     const circles = question.querySelectorAll(".circle");
 
@@ -182,6 +197,17 @@ analyzeBtn.addEventListener("click", () => {
         result.snsLevel * 20,
         result.snsText,
     );
+
+    saveDiagnosisResult({
+        emotionPercent: percent,
+        sleepPercent,
+        regret: result.regret,
+        regretText: result.regretText,
+        snsLevel: result.snsLevel,
+        snsText: result.snsText,
+        emotionText: result.emotion,
+        sleepText: result.sleep,
+    });
 
     openResultModal(result.snsLevel);
 });

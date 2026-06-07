@@ -126,15 +126,15 @@ main {
 .gray   { border-color: var(--gray);   }
 
 .blue.selected {
-    background: radial-gradient(circle at 32% 28%, #e0f2fe 0%, #93c5fd 28%, #60a5fa 58%, #6366f1 100%);
+    background: var(--blue);
 }
 
 .purple.selected {
-    background: radial-gradient(circle at 32% 28%, #f3e8ff 0%, #d8b4fe 30%, #a78bfa 62%, #7c3aed 100%);
+    background: var(--purple);
 }
 
 .gray.selected {
-    background: radial-gradient(circle at 32% 28%, #f1f5f9 0%, #cbd5e1 38%, #94a3b8 100%);
+    background: var(--gray);
 }
 
 /* ===== 분석하기 버튼 ===== */
@@ -145,7 +145,7 @@ button {
     height: 60px;
     border: none;
     border-radius: 12px;
-    background: #6d5dfc;
+    background: var(--purple);
     color: white;
     font-size: 16px;
     cursor: pointer;
@@ -154,7 +154,7 @@ button {
 }
 
 button:hover {
-    background: #5b4be3;
+    background: #8b5cf6;
 }
 
 /* ===== 결과 영역 ===== */
@@ -247,7 +247,7 @@ button:hover {
     margin-bottom: 16px;
     color: #fde68a;
     font-size: 42px;
-    text-shadow: 0 0 18px rgba(253, 224, 71, 0.8);
+    text-shadow: none;
 }
 
 .result-modal-card p {
@@ -271,9 +271,7 @@ button:hover {
     line-height: 1.25;
     letter-spacing: -0.04em;
     white-space: nowrap;
-    text-shadow:
-        0 0 12px rgba(255, 255, 255, 0.28),
-        0 0 28px rgba(167, 139, 250, 0.65);
+    text-shadow: none;
 }
 
 .result-modal-close {

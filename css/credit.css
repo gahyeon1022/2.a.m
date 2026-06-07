@@ -1,0 +1,218 @@
+/* ==============================================
+   credit.css — 크레딧 페이지 스타일
+   ============================================== */
+
+/* 메인 레이아웃 정렬 */
+.credit-main {
+    padding: 50px 20px 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    min-height: calc(100vh - 150px);
+}
+
+.credit-header {
+    text-align: center;
+    width: 100%;
+}
+
+.credit-header h1 {
+    font-size: 36px;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+.credit-title-line {
+    width: 100px;
+    height: 1px;
+    background: var(--line);
+    margin: 0 auto 40px;
+    border: none;
+}
+
+/* 스크롤 컨테이너 */
+.credit-scroll-container {
+    width: 100%;
+    max-width: 650px;
+    height: 48vh;
+    min-height: 350px;
+    background: var(--glass);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 14px 38px rgba(2, 6, 23, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    position: relative;
+    margin: 0 auto 40px;
+    
+    mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+}
+
+/* 실제 스크롤되는 콘텐츠 영역 */
+.credit-scroll-content {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    padding: 0 20px;
+    animation: scrollUp 25s linear infinite;
+}
+
+.credit-section {
+    margin-bottom: 60px;
+}
+
+.credit-section h3 {
+    font-size: 13px;
+    color: var(--purple);
+    letter-spacing: 0.2em;
+    margin-bottom: 20px;
+}
+
+.credit-section p {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 2.2;
+    word-break: keep-all;
+}
+
+@keyframes scrollUp {
+    0%   { top: 100%; transform: translateY(0); }
+    100% { top: 0;    transform: translateY(-100%); }
+}
+
+/* 하단 버튼 영역 */
+.credit-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+.credit-actions button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 200px;
+    height: 54px;
+    border-radius: 12px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+.credit-btn-sleep {
+    background: #0f172a;
+    color: #fff;
+    border: 1px solid rgba(167, 139, 250, 0.4);
+    box-shadow: 0 0 15px rgba(167, 139, 250, 0.15);
+}
+
+.credit-btn-sleep:hover {
+    background: #1e293b;
+    border-color: #a78bfa;
+    transform: translateY(-3px);
+    box-shadow: 0 0 24px rgba(167, 139, 250, 0.35);
+}
+
+.credit-btn-main {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--muted);
+    border: 1px solid var(--line);
+}
+
+.credit-btn-main:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    transform: translateY(-3px);
+}
+
+/* 이스터에그 버튼 (도망치는 버튼) */
+.credit-easter-egg {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 45px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 11px;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+    z-index: 10;
+    transition: left 0.2s ease-out, top 0.2s ease-out, background 0.1s;
+}
+
+.credit-easter-egg:hover {
+    background: rgba(255, 255, 255, 0.3);
+    color: #DEFF9A;
+}
+
+/* 가짜 버튼 전용 애니메이션 속성 */
+.clone-button {
+    width: 35px;
+    height: 32px;
+    font-size: 15px;
+
+    /* 확산 애니메이션 */
+    transition: left 0.6s cubic-bezier(0.25, 1, 0.5, 1), top 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* 일자로 떨어지는 무한 루프 애니메이션 */
+@keyframes infiniteFall {
+    0% { 
+        transform: translateY(0); 
+    }
+    100% { 
+         /* 자바스크립트에서 계산한 바닥까지의 정확한 거리(--end-y)만큼만 이동 */
+        transform: translateY(var(--end-y)); 
+    }
+}
+
+@media (max-width: 768px) {
+    .credit-main {
+        padding: 30px 15px 60px;
+    }
+    .credit-header h1 {
+        font-size: 28px;
+    }
+    .credit-scroll-container {
+        height: 55vh;
+    }
+    .credit-section p {
+        font-size: 13px;
+        line-height: 2;
+    }
+    .credit-actions {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+    }
+    .credit-actions button {
+        width: 48%;
+        max-width: 150px;
+        height: 44px;
+        font-size: 12px;
+    }
+
+    .clone-button {
+        width: 25px;
+        height: 23px;
+        font-size: 11px;
+    }
+}

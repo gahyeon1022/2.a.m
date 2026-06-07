@@ -1,0 +1,117 @@
+{
+  "version": "3.0",
+  "lastUpdated": "2026-06-06T21:20:10.341Z",
+  "activeFeatures": [
+    "js"
+  ],
+  "primaryFeature": "js",
+  "features": {
+    "js": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-06-06T18:39:54.050Z",
+        "lastUpdated": "2026-06-06T21:20:10.339Z"
+      },
+      "lastFile": "/Users/yv073/Desktop/SchoolFiles/3-1/웹클컴/팀프로젝트/2.a.m/js/game.js"
+    }
+  },
+  "pipeline": {
+    "currentPhase": 1,
+    "level": "Dynamic",
+    "phaseHistory": []
+  },
+  "session": {
+    "startedAt": "2026-06-06T18:16:23.718Z",
+    "onboardingCompleted": false,
+    "lastActivity": "2026-06-06T21:20:10.341Z"
+  },
+  "history": [
+    {
+      "timestamp": "2026-06-06T18:39:54.053Z",
+      "feature": "js",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-06T19:46:47.519Z",
+      "feature": "js",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-06T19:57:32.270Z",
+      "feature": "js",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-06T20:02:53.820Z",
+      "feature": "js",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-06T20:07:56.466Z",
+      "feature": "js",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-06T20:11:32.233Z",
+      "feature": "js",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-06T20:59:56.935Z",
+      "feature": "js",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-06T21:00:15.164Z",
+      "feature": "js",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-06T21:00:21.730Z",
+      "feature": "js",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-06T21:17:07.503Z",
+      "feature": "js",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-06T21:20:10.341Z",
+      "feature": "js",
+      "phase": "do",
+      "action": "updated"
+    }
+  ],
+  "stateMachine": {
+    "defaultWorkflow": "default",
+    "activeWorkflows": {},
+    "totalTransitions": 0
+  },
+  "automation": {
+    "globalLevel": 2,
+    "trustScore": 40,
+    "pendingApprovals": 0,
+    "lastGateResult": null
+  },
+  "team": {
+    "enabled": true,
+    "stateFile": ".bkit/runtime/agent-state.json",
+    "eventsFile": ".bkit/runtime/agent-events.jsonl"
+  }
+}

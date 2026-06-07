@@ -24,7 +24,7 @@
 
 /* ===== BODY — 밤하늘 배경 ===== */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', Arial, sans-serif;
     background:
         radial-gradient(circle at 86% 24%, rgba(99, 82, 180, 0.28), transparent 25%),
         radial-gradient(circle at 12% 48%, rgba(45, 79, 105, 0.20), transparent 34%),
@@ -504,8 +504,9 @@ footer {
     border-top: 1px solid var(--line);
     height: 60px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: center;
+    gap: 24px;
     padding: 0 40px;
     color: var(--muted);
     font-size: 12px;

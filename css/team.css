@@ -17,13 +17,13 @@
 }
 
 .team-title {
-    font-size: 44px;
-    letter-spacing: 0.04em;
-    background: linear-gradient(120deg, #c7d2fe 0%, var(--blue) 45%, var(--purple) 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    text-shadow: 0 0 32px rgba(167, 139, 250, 0.35);
+    font-size: 58px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: #fff;
+    text-shadow:
+        0 0 20px rgba(167, 139, 250, 0.6),
+        0 0 40px rgba(96, 165, 250, 0.3);
 }
 
 .team-subtitle {
@@ -274,7 +274,7 @@
     }
 
     .team-title {
-        font-size: 32px;
+        font-size: 36px;
     }
 
     .team-subtitle {

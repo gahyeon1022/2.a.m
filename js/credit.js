@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (btnGoMain) {
         btnGoMain.addEventListener('click', function() {
-            window.location.href = 'index.html';
+            window.location.href = 'main.html';
         });
     }
 

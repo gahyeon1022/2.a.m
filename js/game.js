@@ -565,7 +565,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     document.getElementById("btnMain").addEventListener("click", function() {
-        window.location.href = "index.html";
+        window.location.href = "main.html";
     });
 
     var menuToggle = document.getElementById("menuToggle");

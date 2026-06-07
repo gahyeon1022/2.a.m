@@ -34,23 +34,23 @@ function updateCard(cardIndex, title, width, description) {
 const levelDetails = {
     1: {
         message: "Lv.1 😌 매우 안정",
-        nickname: "😌 평범한 인간",
+        nickname: "🛏️ 숙면 장인형",
     },
     2: {
         message: "Lv.2 🟢 주의",
-        nickname: "☕ 감성 입문자",
+        nickname: "☕ 감성 탐험가형",
     },
     3: {
         message: "Lv.3 🟡 경계",
-        nickname: "🌙 새벽 감성 폭발러",
+        nickname: "🌃 창 밖 감상가형",
     },
     4: {
         message: "Lv.4 🟠 위험",
-        nickname: "🎬 혼자 영화 감독",
+        nickname: "🎬 망상 시나리오 작가형",
     },
     5: {
         message: "Lv.5 🔴 매우 위험",
-        nickname: "🌌 우주와 대화하는 자",
+        nickname: "🌌 현실 이탈자형",
     },
 };
 
@@ -71,6 +71,8 @@ function openResultModal(level) {
 
     levelMessage.textContent = message;
     levelNickname.textContent = nickname;
+    resultModal.classList.remove("level-1", "level-2", "level-3", "level-4", "level-5");
+    resultModal.classList.add(`level-${level}`);
     resultModal.classList.add("show");
     resultModal.setAttribute("aria-hidden", "false");
     resultModalClose.focus();

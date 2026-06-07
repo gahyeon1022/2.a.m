@@ -316,6 +316,75 @@ button:hover {
     box-shadow: 0 0 20px rgba(147, 197, 253, 0.42), 0 0 40px rgba(167, 139, 250, 0.28);
 }
 
+.result-modal.level-1 .result-modal-card {
+    border-color: rgba(125, 211, 252, 0.44);
+    box-shadow:
+        0 0 28px rgba(125, 211, 252, 0.18),
+        0 24px 80px rgba(0, 0, 0, 0.42),
+        inset 0 1px 0 rgba(255, 255, 255, 0.11);
+}
+
+.result-modal.level-1 .result-modal-card h2,
+.result-modal.level-1 .level-nickname {
+    color: #e0f2fe;
+}
+
+.result-modal.level-2 .result-modal-card {
+    border-color: rgba(74, 222, 128, 0.48);
+    box-shadow:
+        0 0 34px rgba(74, 222, 128, 0.22),
+        0 24px 80px rgba(0, 0, 0, 0.46),
+        inset 0 1px 0 rgba(255, 255, 255, 0.11);
+}
+
+.result-modal.level-2 .result-modal-card h2,
+.result-modal.level-2 .level-nickname {
+    color: #dcfce7;
+}
+
+.result-modal.level-3 .result-modal-card {
+    border-color: rgba(250, 204, 21, 0.52);
+    box-shadow:
+        0 0 40px rgba(250, 204, 21, 0.26),
+        0 24px 80px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.result-modal.level-3 .result-modal-card h2,
+.result-modal.level-3 .level-nickname {
+    color: #fef9c3;
+}
+
+.result-modal.level-4 .result-modal-card {
+    border-color: rgba(251, 146, 60, 0.58);
+    box-shadow:
+        0 0 48px rgba(251, 146, 60, 0.34),
+        0 24px 80px rgba(0, 0, 0, 0.56),
+        inset 0 1px 0 rgba(255, 255, 255, 0.13);
+}
+
+.result-modal.level-4 .result-modal-card h2,
+.result-modal.level-4 .level-nickname {
+    color: #ffedd5;
+}
+
+.result-modal.level-5 .result-modal-card {
+    border-color: rgba(248, 113, 113, 0.68);
+    box-shadow:
+        0 0 58px rgba(248, 113, 113, 0.46),
+        0 24px 86px rgba(0, 0, 0, 0.64),
+        inset 0 1px 0 rgba(255, 255, 255, 0.14);
+}
+
+.result-modal.level-5 .result-modal-card h2,
+.result-modal.level-5 .level-nickname {
+    color: #fee2e2;
+}
+
+.result-modal.level-5 .level-nickname {
+    animation-duration: 1.1s;
+}
+
 @keyframes nicknameGlow {
     from {
         filter: brightness(0.95);

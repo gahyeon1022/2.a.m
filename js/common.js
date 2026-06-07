@@ -29,7 +29,6 @@ if (menuToggle && mainNav) {
 
 var currentTimeEl = document.getElementById("currentTimeTitle");
 var factMessageEl = document.getElementById("factMessage");
-var factRefreshBtn = document.getElementById("factRefreshBtn");
 var diagnosisStorageKey = "twoAmDiagnosisResult";
 var factMessages = [
     "지금 안 자면 내일의 너는 오늘의 너를 고소하고 싶어질 겁니다.",
@@ -59,6 +58,16 @@ var factMessages = [
     "당신의 뇌는 퇴근했는데, 불안만 야근 중입니다.",
 ];
 var currentFactIndex = 0;
+var factFlyPositions = [
+    ["-10px", "12px"],
+    ["8px", "14px"],
+    ["0", "16px"],
+    ["12px", "10px"],
+    ["-8px", "15px"],
+    ["6px", "12px"],
+    ["-12px", "9px"],
+    ["10px", "16px"],
+];
 
 function padTime(value) {
     return String(value).padStart(2, "0");
@@ -83,7 +92,36 @@ function showNextFact() {
     }
 
     currentFactIndex = (currentFactIndex + 1) % factMessages.length;
-    factMessageEl.textContent = factMessages[currentFactIndex];
+    renderFactMessage(factMessages[currentFactIndex]);
+}
+
+function renderFactMessage(message) {
+    factMessageEl.textContent = "";
+
+    Array.from(message).forEach(function(character, index) {
+        var span = document.createElement("span");
+        var position = factFlyPositions[index % factFlyPositions.length];
+
+        span.textContent = character === " " ? "\u00a0" : character;
+        span.className = character === " " ? "fact-char fact-space" : "fact-char";
+        span.style.setProperty("--fly-x", position[0]);
+        span.style.setProperty("--fly-y", position[1]);
+        span.style.setProperty("--fly-delay", Math.min(index * 0.012, 0.32) + "s");
+        factMessageEl.appendChild(span);
+    });
+}
+
+function fadeToNextFact() {
+    if (!factMessageEl) {
+        return;
+    }
+
+    factMessageEl.classList.add("fade-out");
+
+    setTimeout(function() {
+        showNextFact();
+        factMessageEl.classList.remove("fade-out");
+    }, 800);
 }
 
 function setDashboardValue(id, value) {
@@ -167,11 +205,8 @@ if (currentTimeEl) {
 }
 
 if (factMessageEl) {
-    factMessageEl.textContent = factMessages[currentFactIndex];
-}
-
-if (factRefreshBtn) {
-    factRefreshBtn.addEventListener("click", showNextFact);
+    renderFactMessage(factMessages[currentFactIndex]);
+    setInterval(fadeToNextFact, 3500);
 }
 
 renderDashboard();

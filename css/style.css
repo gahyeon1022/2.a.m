@@ -328,6 +328,49 @@ nav .active {
     line-height: 1.25;
     font-weight: 800;
     word-break: keep-all;
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0) scale(1);
+    transition: opacity 0.75s ease, transform 0.75s ease, filter 0.75s ease;
+}
+
+.fact-card p.fade-out {
+    opacity: 0;
+    filter: blur(10px);
+    transform: translateY(-10px) scale(0.985);
+}
+
+.fact-char {
+    display: inline-block;
+    opacity: 0;
+    transform:
+        translate3d(var(--fly-x), var(--fly-y), 0)
+        scale(0.98);
+    animation: factCharReveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: var(--fly-delay);
+}
+
+.fact-space {
+    width: 0.32em;
+}
+
+@keyframes factCharReveal {
+    0% {
+        opacity: 0;
+        filter: blur(10px);
+        transform:
+            translate3d(var(--fly-x), var(--fly-y), 0)
+            scale(0.98);
+    }
+    70% {
+        opacity: 1;
+        filter: blur(1px);
+    }
+    100% {
+        opacity: 1;
+        filter: blur(0);
+        transform: translate3d(0, 0, 0) scale(1);
+    }
 }
 
 .text-button {

@@ -164,65 +164,15 @@ button:hover {
 }
 
 #analyzeBtn {
-    position: relative;
-    overflow: hidden;
-    background: linear-gradient(135deg, #7c3aed, #a78bfa, #6d5dfc);
-    border-bottom: 4px solid #4c1d95;
-    box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.36),
-        0 8px 0 rgba(49, 30, 100, 0.72),
-        0 14px 22px rgba(15, 23, 42, 0.34),
-        0 0 12px rgba(167, 139, 250, 0.36),
-        0 0 26px rgba(167, 139, 250, 0.18);
-    transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
-}
-
-#analyzeBtn::before {
-    content: "";
-    position: absolute;
-    top: -45%;
-    left: -80%;
-    width: 48%;
-    height: 190%;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 255, 255, 0.46),
-        transparent
-    );
-    transform: rotate(24deg);
-    animation: buttonShine 2.8s ease-in-out infinite;
+    background: linear-gradient(135deg, #1e3a8a, #7c3aed);
+    border: none;
+    box-shadow: 0 0 14px rgba(147, 197, 253, 0.22), 0 0 28px rgba(167, 139, 250, 0.15);
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
 #analyzeBtn:hover {
-    background: linear-gradient(135deg, #8b5cf6, #c4b5fd, #7c3aed);
-    box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.42),
-        0 8px 0 rgba(49, 30, 100, 0.72),
-        0 16px 26px rgba(15, 23, 42, 0.38),
-        0 0 16px rgba(167, 139, 250, 0.52),
-        0 0 34px rgba(167, 139, 250, 0.28);
-}
-
-#analyzeBtn:active {
-    transform: translateY(5px);
-    border-bottom-width: 2px;
-    box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.28),
-        0 3px 0 rgba(49, 30, 100, 0.72),
-        0 8px 16px rgba(15, 23, 42, 0.3),
-        0 0 12px rgba(167, 139, 250, 0.36);
-}
-
-@keyframes buttonShine {
-    0% {
-        left: -80%;
-    }
-
-    45%,
-    100% {
-        left: 130%;
-    }
+    transform: translateY(-3px);
+    box-shadow: 0 0 20px rgba(147, 197, 253, 0.42), 0 0 40px rgba(167, 139, 250, 0.28);
 }
 
 /* ===== 결과 영역 ===== */
@@ -291,16 +241,16 @@ button:hover {
 
 .result-modal-card {
     width: min(100%, 480px);
-    padding: 44px 32px 34px;
-    border: 1px solid rgba(196, 181, 253, 0.5);
+    padding: 52px 32px 42px;
+    border: 1px solid rgba(167, 139, 250, 0.38);
     border-radius: 24px;
     background:
-        radial-gradient(circle at 50% 0%, rgba(167, 139, 250, 0.25), transparent 42%),
+        radial-gradient(circle at 50% 0%, rgba(167, 139, 250, 0.2), transparent 44%),
         linear-gradient(145deg, rgba(15, 23, 42, 0.97), rgba(30, 20, 70, 0.96));
     box-shadow:
-        0 0  40px rgba(129, 140, 248, 0.30),
-        0 24px 80px rgba(0, 0, 0, 0.55),
-        inset 0 1px 0 rgba(255, 255, 255, 0.14);
+        0 0  40px rgba(129, 140, 248, 0.22),
+        0 24px 80px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.11);
     text-align: center;
     transform: translateY(20px) scale(0.96);
     transition: transform 0.3s;
@@ -314,21 +264,25 @@ button:hover {
     display: block;
     margin-bottom: 16px;
     color: #fde68a;
-    font-size: 42px;
-    text-shadow: none;
+    font-size: 50px;
+    filter: drop-shadow(0 0 12px rgba(167, 139, 250, 0.55));
 }
 
 .result-modal-card p {
-    color: var(--muted);
-    font-size: 14px;
-    letter-spacing: 0.12em;
+    color: var(--purple);
+    font-size: 11px;
+    letter-spacing: 0.28em;
 }
 
 .result-modal-card h2 {
     margin: 14px 0 22px;
-    font-size: clamp(24px, 4vw, 31px);
-    line-height: 1.4;
+    font-size: clamp(20px, 5vw, 28px);
+    font-weight: 800;
+    line-height: 1.35;
     color: #fff;
+    text-shadow:
+        0 0 12px rgba(255, 255, 255, 0.2),
+        0 0 28px rgba(167, 139, 250, 0.45);
 }
 
 .level-nickname {
@@ -339,37 +293,25 @@ button:hover {
     line-height: 1.25;
     letter-spacing: -0.04em;
     white-space: nowrap;
-    text-shadow: none;
+    text-shadow:
+        0 0 12px rgba(255, 255, 255, 0.2),
+        0 0 28px rgba(167, 139, 250, 0.45);
 }
 
 .result-modal-close {
     width: 180px;
     height: 52px;
     margin: 36px auto 0;
-    background: linear-gradient(135deg, #7c3aed, #a78bfa);
-    border-bottom: 3px solid #5b21b6;
-    box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.26),
-        0 4px 0 rgba(49, 30, 100, 0.58),
-        0 10px 16px rgba(15, 23, 42, 0.22);
-    transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+    background: linear-gradient(135deg, #1e3a8a, #7c3aed);
+    border: none;
+    color: #fff;
+    box-shadow: 0 0 14px rgba(147, 197, 253, 0.22), 0 0 28px rgba(167, 139, 250, 0.15);
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .result-modal-close:hover {
-    background: linear-gradient(135deg, #8b5cf6, #bda7ff);
-    box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.32),
-        0 4px 0 rgba(49, 30, 100, 0.58),
-        0 12px 18px rgba(15, 23, 42, 0.25);
-}
-
-.result-modal-close:active {
-    transform: translateY(3px);
-    border-bottom-width: 1px;
-    box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.2),
-        0 2px 0 rgba(49, 30, 100, 0.58),
-        0 6px 12px rgba(15, 23, 42, 0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 0 20px rgba(147, 197, 253, 0.42), 0 0 40px rgba(167, 139, 250, 0.28);
 }
 
 /* ===== 모바일 (form 전용) ===== */

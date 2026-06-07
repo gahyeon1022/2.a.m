@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" role="img" aria-label="cricket riding a star">
+  <defs>
+    <linearGradient id="star" x1="38" y1="78" x2="142" y2="170" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff7a8"/>
+      <stop offset="0.5" stop-color="#fde047"/>
+      <stop offset="1" stop-color="#f59e0b"/>
+    </linearGradient>
+    <linearGradient id="cricketBody" x1="42" y1="58" x2="136" y2="110" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#d7ad72"/>
+      <stop offset="0.58" stop-color="#b87845"/>
+      <stop offset="1" stop-color="#7b4a2a"/>
+    </linearGradient>
+    <linearGradient id="cricketWing" x1="82" y1="70" x2="124" y2="106" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#e3b77b"/>
+      <stop offset="1" stop-color="#9a6a3f"/>
+    </linearGradient>
+  </defs>
+
+  <path d="M90 98 105 126 137 130 114 150 121 173 90 160 59 173 66 150 43 130 75 126Z" fill="url(#star)" stroke="#fff7a8" stroke-width="5" stroke-linejoin="round"/>
+
+  <path d="M54 66C49 42 38 31 22 31M69 66C83 41 101 31 123 34" fill="none" stroke="#5f3f22" stroke-width="5.5" stroke-linecap="round"/>
+
+  <ellipse cx="101" cy="92" rx="39" ry="22" fill="url(#cricketBody)"/>
+  <ellipse cx="98" cy="91" rx="13" ry="30" fill="url(#cricketWing)" transform="rotate(78 98 91)"/>
+
+  <path d="M80 88c14 1 27 4 38 9M80 96c12 3 23 6 33 10" fill="none" stroke="#dfb77a" stroke-width="3.5" stroke-linecap="round" opacity="0.85"/>
+
+  <path d="M55 105 48 124M73 106 64 128M106 106l11 22M126 101l18 13" fill="none" stroke="#5f3f22" stroke-width="7" stroke-linecap="round"/>
+  <path d="M55 105 48 124M73 106 64 128M106 106l11 22M126 101l18 13" fill="none" stroke="#9b6a3c" stroke-width="4.2" stroke-linecap="round"/>
+
+  <ellipse cx="58" cy="86" rx="24" ry="23" fill="#d7ad72"/>
+  <circle cx="52" cy="84" r="2.7" fill="#1f2937"/>
+  <circle cx="64" cy="84" r="2.7" fill="#1f2937"/>
+  <circle cx="58" cy="90" r="1.2" fill="#7b4a2a"/>
+  <path d="M52 95c4 4.2 12 4.2 16 0" fill="none" stroke="#1f2937" stroke-width="3.4" stroke-linecap="round"/>
+</svg>

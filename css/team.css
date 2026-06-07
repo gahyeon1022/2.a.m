@@ -1,0 +1,328 @@
+/* ==============================================
+   team.css — 팀 소개 페이지 전용 스타일
+   공통(style.css)은 수정하지 않고 team- 접두사로만 작성
+   색상은 :root 변수(--text, --glass, --line, --blue, --purple) 재사용
+   ============================================== */
+
+.team-main {
+    padding: 50px 20px 80px;
+    max-width: 1180px;
+    margin: 0 auto;
+}
+
+/* ===== ① 페이지 타이틀 ===== */
+.team-intro {
+    text-align: center;
+    margin-bottom: 56px;
+}
+
+.team-title {
+    font-size: 44px;
+    letter-spacing: 0.04em;
+    background: linear-gradient(120deg, #c7d2fe 0%, var(--blue) 45%, var(--purple) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 32px rgba(167, 139, 250, 0.35);
+}
+
+.team-subtitle {
+    margin-top: 18px;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--muted);
+}
+
+.team-intro-note {
+    margin-top: 14px;
+    font-size: 13px;
+    color: var(--gray);
+}
+
+.team-intro-note a {
+    color: #c7d2fe;
+    text-decoration: none;
+    border-bottom: 1px dashed rgba(129, 140, 248, 0.6);
+    transition: color 0.2s;
+}
+
+.team-intro-note a:hover {
+    color: #fff;
+}
+
+/* ===== ② 카드 그리드 ===== */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+}
+
+/* ===== 팀원 카드 (공통 글래스 패턴과 통일) ===== */
+.team-card {
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    background: var(--glass);
+    backdrop-filter: blur(14px);
+    box-shadow:
+        0 18px 48px rgba(2, 6, 23, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.team-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(167, 139, 250, 0.45);
+    box-shadow:
+        0 26px 60px rgba(2, 6, 23, 0.42),
+        0 0 28px rgba(129, 140, 248, 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+/* ===== 프로필 이미지 — 큰 정사각 ===== */
+.team-card-photo {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    margin-bottom: 18px;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    background:
+        radial-gradient(circle at 50% 38%, rgba(167, 139, 250, 0.24), transparent 62%),
+        linear-gradient(160deg, rgba(96, 165, 250, 0.14), rgba(10, 16, 40, 0.6));
+}
+
+.team-card-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* ===== 진단 결과 오버레이 (사진 위에 반투명으로 덮음) ===== */
+.team-stats {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 12px;
+    padding: 22px 20px 56px;
+    list-style: none;
+    color: var(--text);
+    /* 사진을 어둡게 가려 가독성 확보 */
+    background: linear-gradient(160deg, rgba(7, 16, 31, 0.86), rgba(9, 13, 37, 0.9));
+    backdrop-filter: blur(4px);
+}
+
+.team-stats[hidden] {
+    display: none;
+}
+
+.team-stats ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
+
+.team-stats-title {
+    margin-bottom: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 0.06em;
+    text-align: center;
+    color: #c7d2fe;
+    text-transform: uppercase;
+}
+
+/* 펼칠 때 부드럽게 등장 */
+.team-card.is-open .team-stats {
+    animation: teamStatsIn 0.3s ease both;
+}
+
+@keyframes teamStatsIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .team-card.is-open .team-stats {
+        animation: none;
+    }
+}
+
+/* 이름/학번/학과 */
+.team-card-id {
+    min-width: 0;
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--line);
+}
+
+.team-card-name {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--text);
+}
+
+/* 역할 배지 */
+.team-card-role {
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #c7d2fe;
+    background: rgba(129, 140, 248, 0.16);
+    border: 1px solid rgba(129, 140, 248, 0.3);
+}
+
+.team-card-no {
+    margin-top: 4px;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+}
+
+.team-card-dept {
+    margin-top: 2px;
+    font-size: 13px;
+    color: var(--gray);
+}
+
+/* ===== 진단 유형 배지 ===== */
+.team-card-level {
+    align-self: flex-start;
+    display: inline-block;
+    margin-top: auto;
+    padding: 6px 13px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: bold;
+    color: #f8fafc;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+/* 레벨별 색상 — 블루(안정) → 퍼플(위험) */
+.team-card-level.lv1 { background: rgba(96, 165, 250, 0.32); }
+.team-card-level.lv2 { background: rgba(56, 189, 248, 0.32); }
+.team-card-level.lv3 { background: rgba(129, 140, 248, 0.38); }
+.team-card-level.lv4 { background: rgba(167, 139, 250, 0.42); }
+.team-card-level.lv5 {
+    background: rgba(192, 132, 252, 0.48);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 0 18px rgba(192, 132, 252, 0.45);
+}
+
+/* ===== 진단 결과 토글 버튼 — 사진 칸 안 좌하단 pill ===== */
+.team-toggle {
+    position: absolute;
+    left: 12px;
+    bottom: 12px;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 13px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: bold;
+    color: #f8fafc;
+    background: rgba(7, 16, 31, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    backdrop-filter: blur(6px);
+    box-shadow: 0 6px 18px rgba(2, 6, 23, 0.45);
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.team-toggle:hover {
+    color: #fff;
+    background: rgba(129, 140, 248, 0.35);
+    border-color: rgba(129, 140, 248, 0.6);
+}
+
+.team-toggle-icon {
+    font-size: 13px;
+    line-height: 1;
+}
+
+/* 펼친 상태에서는 닫기 버튼이 결과 위로 잘 보이게 */
+.team-card.is-open .team-toggle {
+    background: rgba(7, 16, 31, 0.72);
+}
+
+/* ===== 진단 결과 4개 바 (오버레이 내부) ===== */
+.team-stat-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 7px;
+    font-size: 13px;
+}
+
+.team-stat-top span {
+    color: var(--muted);
+}
+
+.team-stat-top b {
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 0.02em;
+    color: var(--text);
+}
+
+/* 바 트랙 */
+.team-bar {
+    height: 8px;
+    border-radius: 999px;
+    background: rgba(2, 6, 23, 0.5);
+    border: 1px solid var(--line);
+    overflow: hidden;
+}
+
+/* 바 채움 — form 페이지 결과 바와 동일한 블루→퍼플 그라데이션 */
+.team-bar-fill {
+    height: 100%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--blue) 0%, var(--purple) 100%);
+    box-shadow: 0 0 10px rgba(129, 140, 248, 0.5);
+}
+
+/* ===== 태블릿 (2열) ===== */
+@media (max-width: 1024px) {
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ===== 모바일 (1열) ===== */
+@media (max-width: 768px) {
+    .team-main {
+        padding: 36px 16px 60px;
+    }
+
+    .team-title {
+        font-size: 32px;
+    }
+
+    .team-subtitle {
+        font-size: 14px;
+    }
+
+    .team-intro {
+        margin-bottom: 40px;
+    }
+
+    .team-grid {
+        grid-template-columns: 1fr;
+        gap: 22px;
+    }
+}

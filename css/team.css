@@ -53,8 +53,22 @@
 /* ===== ② 카드 그리드 ===== */
 .team-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(6, 1fr);   /* 6칸 베이스 → 카드당 2칸 = 3열 효과 */
     gap: 28px;
+}
+
+/* 각 카드는 2칸씩 차지 */
+.team-card {
+    grid-column: span 2;
+}
+
+/* 마지막 줄 2개(4·5번째)를 가운데 정렬 — 1칸씩 안쪽으로 오프셋 */
+.team-card:nth-child(4) {
+    grid-column: 2 / span 2;
+}
+
+.team-card:nth-child(5) {
+    grid-column: 4 / span 2;
 }
 
 /* ===== 팀원 카드 (공통 글래스 패턴과 통일) ===== */
@@ -265,6 +279,13 @@
     .team-grid {
         grid-template-columns: repeat(2, 1fr);
     }
+
+    /* 6칸 오프셋 리셋 → 일반 2열 흐름 */
+    .team-card,
+    .team-card:nth-child(4),
+    .team-card:nth-child(5) {
+        grid-column: auto;
+    }
 }
 
 /* ===== 모바일 (1열) ===== */
@@ -288,5 +309,11 @@
     .team-grid {
         grid-template-columns: 1fr;
         gap: 22px;
+    }
+
+    .team-card,
+    .team-card:nth-child(4),
+    .team-card:nth-child(5) {
+        grid-column: auto;
     }
 }

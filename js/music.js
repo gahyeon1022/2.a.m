@@ -6,6 +6,9 @@ var musicButton = document.getElementById("musicToggle");
 var musicFrameWrap = document.getElementById("musicFrame");
 var musicIframe;
 var musicPlaying = localStorage.getItem(musicStorageKey) === "true";
+var cricketMotionStorageKey = "twoAmCricketMotionStartedAt";
+var cricketFloatDuration = 24;
+var cricketSwayDuration = 7.5;
 
 function sendMusicCommand(command) {
     if (!musicIframe || !musicIframe.contentWindow) {
@@ -63,6 +66,17 @@ function pauseMusic() {
 }
 
 if (musicPlayer && musicButton && musicFrameWrap) {
+    var cricketMotionStartedAt = Number(localStorage.getItem(cricketMotionStorageKey));
+
+    if (!cricketMotionStartedAt || Number.isNaN(cricketMotionStartedAt)) {
+        cricketMotionStartedAt = Date.now();
+        localStorage.setItem(cricketMotionStorageKey, String(cricketMotionStartedAt));
+    }
+
+    var cricketElapsed = (Date.now() - cricketMotionStartedAt) / 1000;
+    musicPlayer.style.animationDelay = "-" + (cricketElapsed % cricketFloatDuration) + "s";
+    musicButton.style.animationDelay = "-" + (cricketElapsed % cricketSwayDuration) + "s";
+
     updateMusicButton();
 
     musicButton.addEventListener("click", function() {

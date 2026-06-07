@@ -18,7 +18,7 @@ teamToggles.forEach(function (toggle) {
         toggle.setAttribute("aria-expanded", String(willOpen));
         card.classList.toggle("is-open", willOpen);
 
-        if (icon) icon.textContent = willOpen ? "✕" : "📊";
-        if (text) text.textContent = willOpen ? "닫기" : "감성지수";
+        if (icon) icon.textContent = willOpen ? "✕" : "💬";
+        if (text) text.textContent = willOpen ? "닫기" : "한마디";
     });
 });

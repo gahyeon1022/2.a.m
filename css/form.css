@@ -294,8 +294,10 @@ button:hover {
     letter-spacing: -0.04em;
     white-space: nowrap;
     text-shadow:
-        0 0 12px rgba(255, 255, 255, 0.2),
-        0 0 28px rgba(167, 139, 250, 0.45);
+        0 0 10px rgba(255, 255, 255, 0.38),
+        0 0 22px rgba(196, 181, 253, 0.58),
+        0 0 38px rgba(167, 139, 250, 0.34);
+    animation: nicknameGlow 2s ease-in-out infinite alternate;
 }
 
 .result-modal-close {
@@ -312,6 +314,24 @@ button:hover {
 .result-modal-close:hover {
     transform: translateY(-3px);
     box-shadow: 0 0 20px rgba(147, 197, 253, 0.42), 0 0 40px rgba(167, 139, 250, 0.28);
+}
+
+@keyframes nicknameGlow {
+    from {
+        filter: brightness(0.95);
+        text-shadow:
+            0 0 8px rgba(255, 255, 255, 0.28),
+            0 0 18px rgba(196, 181, 253, 0.46),
+            0 0 30px rgba(167, 139, 250, 0.24);
+    }
+
+    to {
+        filter: brightness(1.18);
+        text-shadow:
+            0 0 14px rgba(255, 255, 255, 0.56),
+            0 0 28px rgba(216, 180, 254, 0.72),
+            0 0 48px rgba(167, 139, 250, 0.46);
+    }
 }
 
 /* ===== 모바일 (form 전용) ===== */

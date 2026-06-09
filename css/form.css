@@ -113,13 +113,19 @@ main {
 
 /* ===== 원형 버튼 ===== */
 .circle {
+    display: block;
+    flex: 0 0 auto;
+    margin: 0;
+    padding: 0;
     border-radius: 50%;
     background: transparent;
+    box-shadow: none;
     cursor: pointer;
     transition: transform 0.25s, background 0.25s;
 }
 
-.circle:hover {
+.circle:hover,
+.circle:focus-visible {
     transform: scale(1.15);
 }
 
@@ -143,29 +149,22 @@ main {
     background: var(--gray);
 }
 
-/* ===== 분석하기 버튼 ===== */
-button {
+/* ===== 주요 버튼 ===== */
+#analyzeBtn,
+.result-modal-close {
     display: block;
-    margin: 90px auto;
-    width: 150px;
-    height: 60px;
     border: none;
     border-radius: 12px;
-    background: var(--purple);
     color: white;
     font-size: 16px;
     cursor: pointer;
-    box-shadow: none;
-    transition: background 0.2s;
-}
-
-button:hover {
-    background: #8b5cf6;
 }
 
 #analyzeBtn {
+    width: 150px;
+    height: 60px;
+    margin: 90px auto;
     background: linear-gradient(135deg, #1e3a8a, #7c3aed);
-    border: none;
     box-shadow: 0 0 14px rgba(147, 197, 253, 0.22), 0 0 28px rgba(167, 139, 250, 0.15);
     transition: transform 0.2s, box-shadow 0.2s;
 }
@@ -305,8 +304,6 @@ button:hover {
     height: 52px;
     margin: 36px auto 0;
     background: linear-gradient(135deg, #1e3a8a, #7c3aed);
-    border: none;
-    color: #fff;
     box-shadow: 0 0 14px rgba(147, 197, 253, 0.22), 0 0 28px rgba(167, 139, 250, 0.15);
     transition: transform 0.2s, box-shadow 0.2s;
 }
@@ -316,69 +313,72 @@ button:hover {
     box-shadow: 0 0 20px rgba(147, 197, 253, 0.42), 0 0 40px rgba(167, 139, 250, 0.28);
 }
 
-.result-modal.level-1 .result-modal-card {
-    border-color: rgba(125, 211, 252, 0.44);
+.result-modal[class*="level-"] .result-modal-card {
+    border-color: rgba(var(--level-rgb), var(--level-border-alpha));
     box-shadow:
-        0 0 28px rgba(125, 211, 252, 0.18),
-        0 24px 80px rgba(0, 0, 0, 0.42),
-        inset 0 1px 0 rgba(255, 255, 255, 0.11);
+        0 0 var(--level-glow-size) rgba(var(--level-rgb), var(--level-glow-alpha)),
+        0 24px var(--level-shadow-size) rgba(0, 0, 0, var(--level-shadow-alpha)),
+        inset 0 1px 0 rgba(255, 255, 255, var(--level-inset-alpha));
 }
 
-.result-modal.level-1 .result-modal-card h2,
-.result-modal.level-1 .level-nickname {
-    color: #e0f2fe;
+.result-modal[class*="level-"] .result-modal-card h2,
+.result-modal[class*="level-"] .level-nickname {
+    color: var(--level-color);
 }
 
-.result-modal.level-2 .result-modal-card {
-    border-color: rgba(74, 222, 128, 0.48);
-    box-shadow:
-        0 0 34px rgba(74, 222, 128, 0.22),
-        0 24px 80px rgba(0, 0, 0, 0.46),
-        inset 0 1px 0 rgba(255, 255, 255, 0.11);
+.result-modal.level-1 {
+    --level-rgb: 125, 211, 252;
+    --level-color: #e0f2fe;
+    --level-border-alpha: 0.44;
+    --level-glow-size: 28px;
+    --level-glow-alpha: 0.18;
+    --level-shadow-size: 80px;
+    --level-shadow-alpha: 0.42;
+    --level-inset-alpha: 0.11;
 }
 
-.result-modal.level-2 .result-modal-card h2,
-.result-modal.level-2 .level-nickname {
-    color: #dcfce7;
+.result-modal.level-2 {
+    --level-rgb: 74, 222, 128;
+    --level-color: #dcfce7;
+    --level-border-alpha: 0.48;
+    --level-glow-size: 34px;
+    --level-glow-alpha: 0.22;
+    --level-shadow-size: 80px;
+    --level-shadow-alpha: 0.46;
+    --level-inset-alpha: 0.11;
 }
 
-.result-modal.level-3 .result-modal-card {
-    border-color: rgba(250, 204, 21, 0.52);
-    box-shadow:
-        0 0 40px rgba(250, 204, 21, 0.26),
-        0 24px 80px rgba(0, 0, 0, 0.5),
-        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+.result-modal.level-3 {
+    --level-rgb: 250, 204, 21;
+    --level-color: #fef9c3;
+    --level-border-alpha: 0.52;
+    --level-glow-size: 40px;
+    --level-glow-alpha: 0.26;
+    --level-shadow-size: 80px;
+    --level-shadow-alpha: 0.5;
+    --level-inset-alpha: 0.12;
 }
 
-.result-modal.level-3 .result-modal-card h2,
-.result-modal.level-3 .level-nickname {
-    color: #fef9c3;
+.result-modal.level-4 {
+    --level-rgb: 251, 146, 60;
+    --level-color: #ffedd5;
+    --level-border-alpha: 0.58;
+    --level-glow-size: 48px;
+    --level-glow-alpha: 0.34;
+    --level-shadow-size: 80px;
+    --level-shadow-alpha: 0.56;
+    --level-inset-alpha: 0.13;
 }
 
-.result-modal.level-4 .result-modal-card {
-    border-color: rgba(251, 146, 60, 0.58);
-    box-shadow:
-        0 0 48px rgba(251, 146, 60, 0.34),
-        0 24px 80px rgba(0, 0, 0, 0.56),
-        inset 0 1px 0 rgba(255, 255, 255, 0.13);
-}
-
-.result-modal.level-4 .result-modal-card h2,
-.result-modal.level-4 .level-nickname {
-    color: #ffedd5;
-}
-
-.result-modal.level-5 .result-modal-card {
-    border-color: rgba(248, 113, 113, 0.68);
-    box-shadow:
-        0 0 58px rgba(248, 113, 113, 0.46),
-        0 24px 86px rgba(0, 0, 0, 0.64),
-        inset 0 1px 0 rgba(255, 255, 255, 0.14);
-}
-
-.result-modal.level-5 .result-modal-card h2,
-.result-modal.level-5 .level-nickname {
-    color: #fee2e2;
+.result-modal.level-5 {
+    --level-rgb: 248, 113, 113;
+    --level-color: #fee2e2;
+    --level-border-alpha: 0.68;
+    --level-glow-size: 58px;
+    --level-glow-alpha: 0.46;
+    --level-shadow-size: 86px;
+    --level-shadow-alpha: 0.64;
+    --level-inset-alpha: 0.14;
 }
 
 .result-modal.level-5 .level-nickname {

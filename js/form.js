@@ -7,7 +7,7 @@ const levelMessage = document.querySelector("#levelMessage");
 const levelNickname = document.querySelector("#levelNickname");
 const resultModalClose = document.querySelector("#resultModalClose");
 const menuToggle = document.querySelector("#menuToggle");
-const navigation = document.querySelector("header nav");
+const navigation = document.querySelector("#mainNav");
 const resultSection = document.querySelector(".result");
 const scores = Array(questions.length).fill(0);
 const diagnosisStorageKey = "twoAmDiagnosisResult";
@@ -74,10 +74,6 @@ function scrollToResult() {
 }
 
 function openResultModal(level) {
-    if (!resultModal || !levelMessage || !levelNickname || !resultModalClose) {
-        return;
-    }
-
     const { message, nickname } = levelDetails[level];
 
     levelMessage.textContent = message;

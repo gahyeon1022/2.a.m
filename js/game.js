@@ -244,8 +244,8 @@ var gameData = {
         boy_3a: {
             messages: [
                 { speaker: "ex", text: "하..." },
-                { speaker: "ex", text: "술 마시면 꼭 이러지." },
-                { speaker: "ex", text: "그만해." }
+                { speaker: "ex", text: "술 먹었냐?" },
+                { speaker: "ex", text: "작작해" }
             ],
             choices: [
                 { label: "보고싶어... 진짜야...",  next: "boy_4" },
@@ -257,8 +257,8 @@ var gameData = {
         boy_3b: {
             messages: [
                 { speaker: "ex", text: "양심 없어?" },
-                { speaker: "ex", text: "야 내가 너 히스테리 부리는거 몇 번이나 참았는데 니가 나 먼저 찼잖아" },
-                { speaker: "ex", text: "그리고 맨날 너 집까지 운전해서 데려다줬는데 왜 문앞까지 안가주냐고 성질낸거 기억안나?" }
+                { speaker: "ex", text: "야 내가 너 히스테리 다 받아줬는데 헤어지자매" },
+                { speaker: "ex", text: "그리고 너 내 선물 네고까지 수락해서 당근했잖아" }
             ],
             choices: [
                 { label: "미안... 나 달라졌어 진짜야ㅠ",                              next: "boy_4"    },
@@ -269,7 +269,7 @@ var gameData = {
         // 마지막 분기
         boy_4: {
             messages: [
-                { speaker: "ex", text: "사람 안 변해." },
+                { speaker: "ex", text: "됐어." },
                 { speaker: "ex", text: "연락하지 마." }
             ],
             choices: [

@@ -69,6 +69,88 @@ var factFlyPositions = [
     ["10px", "16px"],
 ];
 
+function getSavedDiagnosisResult() {
+    var savedResult = localStorage.getItem(diagnosisStorageKey);
+
+    if (!savedResult) {
+        return null;
+    }
+
+    try {
+        var result = JSON.parse(savedResult);
+        var updatedAt = new Date(result.updatedAt);
+        var now = new Date();
+        var isSameDate =
+            updatedAt.getFullYear() === now.getFullYear() &&
+            updatedAt.getMonth() === now.getMonth() &&
+            updatedAt.getDate() === now.getDate();
+
+        if (Number.isNaN(updatedAt.getTime()) || !isSameDate) {
+            localStorage.removeItem(diagnosisStorageKey);
+            return null;
+        }
+
+        return result;
+    } catch (error) {
+        localStorage.removeItem(diagnosisStorageKey);
+        return null;
+    }
+}
+
+function getDiagnosisFactMessages(result) {
+    if (!result) {
+        return factMessages;
+    }
+
+    var emotionPercent = Number(result.emotionPercent) || 0;
+    var sleepPercent = Number(result.sleepPercent) || 0;
+    var snsLevel = Number(result.snsLevel) || 1;
+    var summaryMessage = "진단 결과: 새벽 감성도 " + emotionPercent + "%, 수면 실패 확률 " + sleepPercent + "%입니다.";
+
+    if (snsLevel >= 5) {
+        return [
+            summaryMessage,
+            "현재 상태는 매우 위험입니다. 폰 내려놓고 아무에게도 연락하지 마세요.",
+            "감성 글, 장문 카톡, 전송 버튼 모두 오늘은 금지입니다.",
+            result.regretText || "내일 아침 이불킥 예약입니다.",
+        ];
+    }
+
+    if (snsLevel >= 4) {
+        return [
+            summaryMessage,
+            "위험 단계입니다. 지금 쓰는 말은 아침의 당신이 수습해야 합니다.",
+            "스토리 올리기 전에 물 한 잔 마시고 10분만 버텨보세요.",
+            result.snsText || "SNS는 잠깐 쉬는 편이 좋습니다.",
+        ];
+    }
+
+    if (snsLevel >= 3) {
+        return [
+            summaryMessage,
+            "경계 단계입니다. 감성 플레이리스트는 괜찮지만 연락은 잠시 보류하세요.",
+            "의미심장한 문장은 업로드 말고 임시저장까지만.",
+            result.regretText || "아직은 돌아올 수 있습니다.",
+        ];
+    }
+
+    if (snsLevel >= 2) {
+        return [
+            summaryMessage,
+            "주의 단계입니다. 아직 괜찮지만 릴스 세 개가 한 시간이 될 수 있습니다.",
+            "잠은 오는데 폰을 못 놓는 상태라면 화면 밝기부터 낮춰보세요.",
+            result.snsText || "지금은 가볍게 정리하고 자면 됩니다.",
+        ];
+    }
+
+    return [
+        summaryMessage,
+        "오늘은 비교적 안정권입니다. 이 기세로 바로 자면 승리입니다.",
+        "SNS 위험도는 낮지만 방심하면 알고리즘이 다시 붙잡습니다.",
+        result.regretText || "내일 아침의 나도 안심 가능.",
+    ];
+}
+
 function padTime(value) {
     return String(value).padStart(2, "0");
 }
@@ -166,37 +248,32 @@ function renderDashboard() {
         return;
     }
 
-    var savedResult = localStorage.getItem(diagnosisStorageKey);
+    var result = getSavedDiagnosisResult();
 
-    if (!savedResult) {
+    if (!result) {
         return;
     }
 
-    try {
-        var result = JSON.parse(savedResult);
-        var emotionPercent = Number(result.emotionPercent) || 0;
-        var sleepPercent = Number(result.sleepPercent) || 0;
-        var snsLevel = Number(result.snsLevel) || 0;
+    var emotionPercent = Number(result.emotionPercent) || 0;
+    var sleepPercent = Number(result.sleepPercent) || 0;
+    var snsLevel = Number(result.snsLevel) || 0;
 
-        setDashboardValue("dashboardEmotion", emotionPercent + "%");
-        setDashboardBar("dashboardEmotionBar", emotionPercent);
-        setDashboardValue("dashboardEmotionText", result.emotionText || "진단 결과를 불러왔습니다.");
+    setDashboardValue("dashboardEmotion", emotionPercent + "%");
+    setDashboardBar("dashboardEmotionBar", emotionPercent);
+    setDashboardValue("dashboardEmotionText", result.emotionText || "진단 결과를 불러왔습니다.");
 
-        setDashboardValue("dashboardSleep", sleepPercent + "%");
-        setDashboardBar("dashboardSleepBar", sleepPercent);
-        setDashboardValue("dashboardSleepText", result.sleepText || "수면 실패 확률을 불러왔습니다.");
+    setDashboardValue("dashboardSleep", sleepPercent + "%");
+    setDashboardBar("dashboardSleepBar", sleepPercent);
+    setDashboardValue("dashboardSleepText", result.sleepText || "수면 실패 확률을 불러왔습니다.");
 
-        setDashboardValue("dashboardRegret", result.regret || "-");
-        setDashboardBar("dashboardRegretBar", emotionPercent);
-        setDashboardValue("dashboardRegretText", result.regretText || "후회 지수를 불러왔습니다.");
+    setDashboardValue("dashboardRegret", result.regret || "-");
+    setDashboardBar("dashboardRegretBar", emotionPercent);
+    setDashboardValue("dashboardRegretText", result.regretText || "후회 지수를 불러왔습니다.");
 
-        setDashboardValue("dashboardSns", snsLevel ? "Lv. " + snsLevel : "-");
-        setDashboardBar("dashboardSnsBar", snsLevel * 20);
-        setDashboardValue("dashboardSnsText", result.snsText || "SNS 위험도를 불러왔습니다.");
-        setDashboardValue("dashboardUpdated", "Updated: " + formatUpdatedAt(result.updatedAt));
-    } catch (error) {
-        localStorage.removeItem(diagnosisStorageKey);
-    }
+    setDashboardValue("dashboardSns", snsLevel ? "Lv. " + snsLevel : "-");
+    setDashboardBar("dashboardSnsBar", snsLevel * 20);
+    setDashboardValue("dashboardSnsText", result.snsText || "SNS 위험도를 불러왔습니다.");
+    setDashboardValue("dashboardUpdated", "Updated: " + formatUpdatedAt(result.updatedAt));
 }
 
 if (currentTimeEl) {
@@ -205,6 +282,7 @@ if (currentTimeEl) {
 }
 
 if (factMessageEl) {
+    factMessages = getDiagnosisFactMessages(getSavedDiagnosisResult());
     renderFactMessage(factMessages[currentFactIndex]);
     setInterval(fadeToNextFact, 3500);
 }

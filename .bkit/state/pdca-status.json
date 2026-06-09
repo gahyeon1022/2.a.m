@@ -1,6 +1,6 @@
 {
   "version": "3.0",
-  "lastUpdated": "2026-06-06T21:20:10.341Z",
+  "lastUpdated": "2026-06-09T09:38:49.586Z",
   "activeFeatures": [
     "js"
   ],
@@ -15,7 +15,7 @@
       "documents": {},
       "timestamps": {
         "started": "2026-06-06T18:39:54.050Z",
-        "lastUpdated": "2026-06-06T21:20:10.339Z"
+        "lastUpdated": "2026-06-09T09:38:49.584Z"
       },
       "lastFile": "/Users/yv073/Desktop/SchoolFiles/3-1/웹클컴/팀프로젝트/2.a.m/js/game.js"
     }
@@ -28,7 +28,7 @@
   "session": {
     "startedAt": "2026-06-06T18:16:23.718Z",
     "onboardingCompleted": false,
-    "lastActivity": "2026-06-06T21:20:10.341Z"
+    "lastActivity": "2026-06-09T09:38:49.586Z"
   },
   "history": [
     {
@@ -93,6 +93,12 @@
     },
     {
       "timestamp": "2026-06-06T21:20:10.341Z",
+      "feature": "js",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-09T09:38:49.586Z",
       "feature": "js",
       "phase": "do",
       "action": "updated"

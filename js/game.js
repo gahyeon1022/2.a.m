@@ -5,11 +5,11 @@
 // -------------------------------------------------------
 // ① 별똥별 동적 생성
 // -------------------------------------------------------
-var shootingStarTops = [6, 19, 33, 47, 62, 75];
-var shootingStarsEl  = document.querySelector(".shooting-stars");
+const shootingStarTops = [6, 19, 33, 47, 62, 75];
+const shootingStarsEl  = document.querySelector(".shooting-stars");
 
 shootingStarTops.forEach(function(top, index) {
-    var star = document.createElement("span");
+    const star = document.createElement("span");
     star.style.setProperty("--top",   top + "%");
     star.style.setProperty("--delay", (index * 5) + "s");
     shootingStarsEl.appendChild(star);
@@ -28,7 +28,7 @@ shootingStarTops.forEach(function(top, index) {
 //    silent: true → 선택지 텍스트를 말풍선으로 보내지 않음
 //                    (예: "아무것도 보내지 않는다")
 // -------------------------------------------------------
-var gameData = {
+const gameData = {
 
     // ===================================================
     // 전여친 버전
@@ -173,7 +173,7 @@ var gameData = {
                 title: "자존감 사수형 쿨찐",
                 desc:  "애써 쿨한척 물러서는 당신.\n아마도 내일 전여친과 그녀의 친구들 사이 안줏거리가 될 겁니다."
             }
-        }, 
+        },
         girl_end_e: {
             messages: [
                 { speaker: "ex", text: "자라" }
@@ -244,8 +244,8 @@ var gameData = {
         boy_3a: {
             messages: [
                 { speaker: "ex", text: "하..." },
-                { speaker: "ex", text: "술 먹었냐?" },
-                { speaker: "ex", text: "작작해" }
+                { speaker: "ex", text: "술 마시면 꼭 이러지." },
+                { speaker: "ex", text: "그만해." }
             ],
             choices: [
                 { label: "보고싶어... 진짜야...",  next: "boy_4" },
@@ -257,8 +257,8 @@ var gameData = {
         boy_3b: {
             messages: [
                 { speaker: "ex", text: "양심 없어?" },
-                { speaker: "ex", text: "야 내가 너 히스테리 다 받아줬는데 헤어지자매" },
-                { speaker: "ex", text: "그리고 너 내 선물 네고까지 수락해서 당근했잖아" }
+                { speaker: "ex", text: "야 내가 너 히스테리 부리는거 몇 번이나 참았는데 니가 나 먼저 찼잖아" },
+                { speaker: "ex", text: "그리고 맨날 너 집까지 운전해서 데려다줬는데 왜 문앞까지 안가주냐고 성질낸거 기억안나?" }
             ],
             choices: [
                 { label: "미안... 나 달라졌어 진짜야ㅠ",                              next: "boy_4"    },
@@ -269,7 +269,7 @@ var gameData = {
         // 마지막 분기
         boy_4: {
             messages: [
-                { speaker: "ex", text: "됐어." },
+                { speaker: "ex", text: "사람 안 변해." },
                 { speaker: "ex", text: "연락하지 마." }
             ],
             choices: [
@@ -344,7 +344,7 @@ var gameData = {
 // -------------------------------------------------------
 // ③ 게임 상태
 // -------------------------------------------------------
-var currentVersion = null;
+let currentVersion = null;
 
 // -------------------------------------------------------
 // ④ 화면 전환
@@ -373,14 +373,14 @@ function showEndingSection(title, desc) {
 // -------------------------------------------------------
 
 function scrollToBottom() {
-    var chatBox = document.getElementById("chatBox");
+    const chatBox = document.getElementById("chatBox");
     chatBox.scrollTop = chatBox.scrollHeight;
 }
 
 // 날짜/시간 구분선 추가
 function addDateDivider(text) {
-    var chatBox = document.getElementById("chatBox");
-    var div = document.createElement("div");
+    const chatBox = document.getElementById("chatBox");
+    const div = document.createElement("div");
     div.className   = "game-date-divider";
     div.textContent = text;
     chatBox.appendChild(div);
@@ -388,29 +388,29 @@ function addDateDivider(text) {
 }
 
 // 시간 문자열 생성 — 새벽 3:00 부터 시작해서 메시지마다 1~3분씩 흐름
-var gameMinutes = 0; // 누적 분 (0 = 오전 3:00)
+let gameMinutes = 0; // 누적 분 (0 = 오전 3:00)
 
 function getTimeStr() {
-    var base    = 3 * 60 + gameMinutes; // 기준: 새벽 3시
-    var hours   = Math.floor(base / 60) % 24;
-    var minutes = base % 60;
+    const base    = 3 * 60 + gameMinutes; // 기준: 새벽 3시
+    const hours   = Math.floor(base / 60) % 24;
+    const minutes = base % 60;
     gameMinutes += Math.floor(Math.random() * 3) + 1; // 1~3분 랜덤 경과
     return "오전 " + hours + ":" + String(minutes).padStart(2, "0");
 }
 
 // 말풍선 추가 (isOld: 오래된 대화인지 여부)
 function addMessage(speaker, text, isOld) {
-    var chatBox = document.getElementById("chatBox");
+    const chatBox = document.getElementById("chatBox");
 
-    var wrap = document.createElement("div");
+    const wrap = document.createElement("div");
     wrap.className = "game-msg-wrap " + (speaker === "me" ? "game-msg-me" : "game-msg-ex");
     if (isOld) wrap.classList.add("game-msg-old"); // 흐릿하게 표시
 
-    var bubble = document.createElement("div");
+    const bubble = document.createElement("div");
     bubble.className   = "game-bubble";
     bubble.textContent = text;
 
-    var time = document.createElement("span");
+    const time = document.createElement("span");
     time.className   = "game-msg-time";
     time.textContent = getTimeStr();
 
@@ -428,11 +428,11 @@ function addMessage(speaker, text, isOld) {
 
 // 선택지 렌더링
 function renderChoices(choices) {
-    var area = document.getElementById("choicesArea");
+    const area = document.getElementById("choicesArea");
     area.innerHTML = "";
 
     choices.forEach(function(choice, index) {
-        var btn = document.createElement("button");
+        const btn = document.createElement("button");
         btn.className   = "game-choice-btn " + (index === 0 ? "game-choice-blue" : "game-choice-purple");
         btn.textContent = choice.label;
 
@@ -467,14 +467,14 @@ function hideChoices() {
 // ⑥ 메시지 순차 출력
 // -------------------------------------------------------
 function showMessagesSequentially(messages, callback) {
-    var i = 0;
+    let i = 0;
 
     function showNext() {
         if (i >= messages.length) {
             if (callback) callback();
             return;
         }
-        var msg = messages[i];
+        const msg = messages[i];
         i++;
         addMessage(msg.speaker, msg.text, false);
         setTimeout(showNext, 1200);
@@ -487,8 +487,8 @@ function showMessagesSequentially(messages, callback) {
 // ⑦ 장면 이동
 // -------------------------------------------------------
 function goToScene(sceneId) {
-    var data  = gameData[currentVersion];
-    var scene = data[sceneId];
+    const data  = gameData[currentVersion];
+    const scene = data[sceneId];
 
     if (!scene) {
         console.error("장면을 찾을 수 없음:", sceneId);
@@ -524,7 +524,7 @@ function startGame(version) {
 
     showChatSection();
 
-    var data = gameData[version];
+    const data = gameData[version];
 
     // 오래된 대화 기록 표시 (흐릿하게)
     addDateDivider(data.oldDate);
@@ -568,8 +568,8 @@ document.addEventListener("DOMContentLoaded", function() {
         window.location.href = "main.html";
     });
 
-    var menuToggle = document.getElementById("menuToggle");
-    var mainNav    = document.getElementById("mainNav");
+    const menuToggle = document.getElementById("menuToggle");
+    const mainNav    = document.getElementById("mainNav");
     if (menuToggle && mainNav) {
         menuToggle.addEventListener("click", function() {
             mainNav.classList.toggle("show");

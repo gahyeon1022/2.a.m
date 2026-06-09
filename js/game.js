@@ -3,20 +3,7 @@
 // =====================================================
 
 // -------------------------------------------------------
-// ① 별똥별 동적 생성
-// -------------------------------------------------------
-const shootingStarTops = [6, 19, 33, 47, 62, 75];
-const shootingStarsEl  = document.querySelector(".shooting-stars");
-
-shootingStarTops.forEach(function(top, index) {
-    const star = document.createElement("span");
-    star.style.setProperty("--top",   top + "%");
-    star.style.setProperty("--delay", (index * 5) + "s");
-    shootingStarsEl.appendChild(star);
-});
-
-// -------------------------------------------------------
-// ② 대화 데이터
+// 1. 대화 데이터
 //
 //    각 장면 구조:
 //    {
@@ -124,7 +111,7 @@ const gameData = {
             ]
         },
 
-        // ── 엔딩들 ──
+        // 엔딩들
         girl_end_wise: {
             messages: [],
             ending: {
@@ -278,7 +265,7 @@ const gameData = {
             ]
         },
 
-        // ── 엔딩들 ──
+        // 엔딩들
         boy_end_wise: {
             messages: [],
             ending: {
@@ -342,12 +329,12 @@ const gameData = {
 };
 
 // -------------------------------------------------------
-// ③ 게임 상태
+// 3. 게임 상태
 // -------------------------------------------------------
 let currentVersion = null;
 
 // -------------------------------------------------------
-// ④ 화면 전환
+// 4. 화면 전환
 // -------------------------------------------------------
 function showIntro() {
     document.getElementById("gameIntro").style.display       = "block";
@@ -369,12 +356,13 @@ function showEndingSection(title, desc) {
 }
 
 // -------------------------------------------------------
-// ⑤ 채팅 헬퍼 함수
+// 5. 채팅 함수
 // -------------------------------------------------------
 
+// 스크롤 맨 밑으로 보내기
 function scrollToBottom() {
     const chatBox = document.getElementById("chatBox");
-    chatBox.scrollTop = chatBox.scrollHeight;
+    chatBox.scrollTop = chatBox.scrollHeight; 
 }
 
 // 날짜/시간 구분선 추가
@@ -392,7 +380,7 @@ let gameMinutes = 0; // 누적 분 (0 = 오전 3:00)
 
 function getTimeStr() {
     const base    = 3 * 60 + gameMinutes; // 기준: 새벽 3시
-    const hours   = Math.floor(base / 60) % 24;
+    const hours   = Math.floor(base / 60);
     const minutes = base % 60;
     gameMinutes += Math.floor(Math.random() * 3) + 1; // 1~3분 랜덤 경과
     return "오전 " + hours + ":" + String(minutes).padStart(2, "0");
@@ -568,11 +556,4 @@ document.addEventListener("DOMContentLoaded", function() {
         window.location.href = "main.html";
     });
 
-    const menuToggle = document.getElementById("menuToggle");
-    const mainNav    = document.getElementById("mainNav");
-    if (menuToggle && mainNav) {
-        menuToggle.addEventListener("click", function() {
-            mainNav.classList.toggle("show");
-        });
-    }
 });

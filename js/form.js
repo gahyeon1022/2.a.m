@@ -12,19 +12,6 @@ const resultSection = document.querySelector(".result");
 const scores = Array(questions.length).fill(0);
 const diagnosisStorageKey = "twoAmDiagnosisResult";
 
-const shootingStarTops = [5, 31, 14, 43, 23, 8, 37, 18, 48, 27];
-const shootingStars = document.querySelector(".shooting-stars");
-
-if (shootingStars) {
-    shootingStarTops.forEach((top, index) => {
-        const star = document.createElement("span");
-
-        star.style.setProperty("--top", `${top}%`);
-        star.style.setProperty("--delay", `${index * 3}s`);
-        shootingStars.append(star);
-    });
-}
-
 function updateCard(cardIndex, title, width, description) {
     const card = cards[cardIndex];
 

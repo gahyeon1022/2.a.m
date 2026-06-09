@@ -58,6 +58,7 @@ var factMessages = [
     "당신의 뇌는 퇴근했는데, 불안만 야근 중입니다.",
 ];
 var currentFactIndex = 0;
+var useRandomFactMessages = true;
 var factFlyPositions = [
     ["-10px", "12px"],
     ["8px", "14px"],
@@ -173,7 +174,18 @@ function showNextFact() {
         return;
     }
 
-    currentFactIndex = (currentFactIndex + 1) % factMessages.length;
+    if (useRandomFactMessages && factMessages.length > 1) {
+        var nextFactIndex = currentFactIndex;
+
+        while (nextFactIndex === currentFactIndex) {
+            nextFactIndex = Math.floor(Math.random() * factMessages.length);
+        }
+
+        currentFactIndex = nextFactIndex;
+    } else {
+        currentFactIndex = (currentFactIndex + 1) % factMessages.length;
+    }
+
     renderFactMessage(factMessages[currentFactIndex]);
 }
 
@@ -282,7 +294,11 @@ if (currentTimeEl) {
 }
 
 if (factMessageEl) {
-    factMessages = getDiagnosisFactMessages(getSavedDiagnosisResult());
+    var savedDiagnosisResult = getSavedDiagnosisResult();
+
+    factMessages = getDiagnosisFactMessages(savedDiagnosisResult);
+    useRandomFactMessages = !savedDiagnosisResult;
+    currentFactIndex = useRandomFactMessages ? Math.floor(Math.random() * factMessages.length) : 0;
     renderFactMessage(factMessages[currentFactIndex]);
     setInterval(fadeToNextFact, 3500);
 }

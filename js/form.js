@@ -15,20 +15,40 @@ const diagnosisStorageKey = "twoAmDiagnosisResult";
 const shootingStarTops = [5, 31, 14, 43, 23, 8, 37, 18, 48, 27];
 const shootingStars = document.querySelector(".shooting-stars");
 
-shootingStarTops.forEach((top, index) => {
-    const star = document.createElement("span");
+if (shootingStars) {
+    shootingStarTops.forEach((top, index) => {
+        const star = document.createElement("span");
 
-    star.style.setProperty("--top", `${top}%`);
-    star.style.setProperty("--delay", `${index * 3}s`);
-    shootingStars.append(star);
-});
+        star.style.setProperty("--top", `${top}%`);
+        star.style.setProperty("--delay", `${index * 3}s`);
+        shootingStars.append(star);
+    });
+}
 
 function updateCard(cardIndex, title, width, description) {
     const card = cards[cardIndex];
 
+    if (!card) {
+        return;
+    }
+
     card.querySelector("h3").textContent = title;
     card.querySelector(".bar div").style.width = `${width}%`;
     card.querySelector("small").textContent = description;
+}
+
+function setSelectedCircle(questionIndex, score) {
+    const question = questions[questionIndex];
+
+    if (!question) {
+        return;
+    }
+
+    const circles = question.querySelectorAll(".circle");
+
+    circles.forEach((circle) => {
+        circle.classList.toggle("selected", Number(circle.dataset.score) === score);
+    });
 }
 
 const levelDetails = {
@@ -67,6 +87,10 @@ function scrollToResult() {
 }
 
 function openResultModal(level) {
+    if (!resultModal || !levelMessage || !levelNickname || !resultModalClose) {
+        return;
+    }
+
     const { message, nickname } = levelDetails[level];
 
     levelMessage.textContent = message;
@@ -101,6 +125,63 @@ menuToggle.addEventListener("click", () => {
     menuToggle.setAttribute("aria-expanded", String(isOpen));
     menuToggle.setAttribute("aria-label", isOpen ? "메뉴 닫기" : "메뉴 열기");
 });
+
+function restoreSavedDiagnosisResult() {
+    const savedResult = localStorage.getItem(diagnosisStorageKey);
+
+    if (!savedResult) {
+        return;
+    }
+
+    try {
+        const result = JSON.parse(savedResult);
+        const emotionPercent = Number(result.emotionPercent) || 0;
+        const sleepPercent = Number(result.sleepPercent) || 0;
+        const snsLevel = Number(result.snsLevel) || 0;
+
+        if (Array.isArray(result.questionScores)) {
+            result.questionScores.slice(0, scores.length).forEach((score, index) => {
+                const numericScore = Number(score);
+
+                if (Number.isInteger(numericScore) && numericScore >= 1 && numericScore <= 5) {
+                    scores[index] = numericScore;
+                    setSelectedCircle(index, numericScore);
+                }
+            });
+        }
+
+        if (typeof result.drinkingStyle === "string") {
+            drinkingStyle.value = result.drinkingStyle;
+        }
+
+        updateCard(
+            0,
+            `${emotionPercent}%`,
+            emotionPercent,
+            result.emotionText || "아직 분석 전입니다.",
+        );
+        updateCard(
+            1,
+            `${sleepPercent}%`,
+            sleepPercent,
+            result.sleepText || "오늘 잠 상태를 분석합니다.",
+        );
+        updateCard(
+            2,
+            result.regret || "-",
+            emotionPercent,
+            result.regretText || "내일 아침의 나를 조심하세요.",
+        );
+        updateCard(
+            3,
+            snsLevel ? `Lv. ${snsLevel}` : "Lv. -",
+            snsLevel * 20,
+            result.snsText || "감성 글 업로드 여부를 판단합니다.",
+        );
+    } catch {
+        localStorage.removeItem(diagnosisStorageKey);
+    }
+}
 
 function getResultText(percent) {
     if (percent >= 90) {
@@ -159,14 +240,7 @@ function getResultText(percent) {
 
 function saveDiagnosisResult(result) {
     localStorage.setItem(diagnosisStorageKey, JSON.stringify({
-        emotionPercent: result.emotionPercent,
-        sleepPercent: result.sleepPercent,
-        regret: result.regret,
-        regretText: result.regretText,
-        snsLevel: result.snsLevel,
-        snsText: result.snsText,
-        emotionText: result.emotionText,
-        sleepText: result.sleepText,
+        ...result,
         updatedAt: new Date().toISOString(),
     }));
 }
@@ -176,10 +250,10 @@ questions.forEach((question, index) => {
 
     circles.forEach((circle) => {
         circle.addEventListener("click", () => {
-            circles.forEach((item) => item.classList.remove("selected"));
+            const score = Number(circle.dataset.score);
 
-            circle.classList.add("selected");
-            scores[index] = Number(circle.dataset.score);
+            setSelectedCircle(index, score);
+            scores[index] = score;
         });
     });
 });
@@ -221,7 +295,11 @@ analyzeBtn.addEventListener("click", () => {
         snsText: result.snsText,
         emotionText: result.emotion,
         sleepText: result.sleep,
+        questionScores: [...scores],
+        drinkingStyle: drinkingStyle.value,
     });
 
     openResultModal(result.snsLevel);
 });
+
+restoreSavedDiagnosisResult();

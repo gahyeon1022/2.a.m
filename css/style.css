@@ -530,7 +530,7 @@ footer {
     border: 0;
     border-radius: 0;
     padding: 0;
-    background: url("../asset/cricket.svg") center / contain no-repeat transparent;
+    background: url("../images/cricket.svg") center / contain no-repeat transparent;
     color: var(--text);
     font: inherit;
     font-size: 0;
@@ -546,7 +546,7 @@ footer {
 }
 
 .music-player .music-toggle:hover {
-    background: url("../asset/cricket.svg") center / contain no-repeat transparent;
+    background: url("../images/cricket.svg") center / contain no-repeat transparent;
     animation-play-state: paused;
     transform: translateY(-3px) rotate(-5deg) scale(1.05);
 }

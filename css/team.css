@@ -1,7 +1,5 @@
 /* ==============================================
    team.css — 팀 소개 페이지 전용 스타일
-   공통(style.css)은 수정하지 않고 team- 접두사로만 작성
-   색상은 :root 변수(--text, --glass, --line, --blue, --purple) 재사용
    ============================================== */
 
 .team-main {
@@ -10,7 +8,7 @@
     margin: 0 auto;
 }
 
-/* ===== ① 페이지 타이틀 ===== */
+/* ===== 페이지 타이틀 ===== */
 .team-intro {
     text-align: center;
     margin-bottom: 56px;
@@ -50,19 +48,17 @@
     color: #fff;
 }
 
-/* ===== ② 카드 그리드 ===== */
+/* ===== 카드 그리드 ===== */
 .team-grid {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);   /* 6칸 베이스 → 카드당 2칸 = 3열 효과 */
+    grid-template-columns: repeat(6, 1fr);
     gap: 28px;
 }
 
-/* 각 카드는 2칸씩 차지 */
 .team-card {
     grid-column: span 2;
 }
 
-/* 마지막 줄 2개(4·5번째)를 가운데 정렬 — 1칸씩 안쪽으로 오프셋 */
 .team-card:nth-child(4) {
     grid-column: 2 / span 2;
 }
@@ -71,7 +67,7 @@
     grid-column: 4 / span 2;
 }
 
-/* ===== 팀원 카드 (공통 글래스 패턴과 통일) ===== */
+/* ===== 팀원 카드 ===== */
 .team-card {
     display: flex;
     flex-direction: column;
@@ -95,7 +91,6 @@
         inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
 
-/* ===== 프로필 이미지 — 큰 정사각 ===== */
 .team-card-photo {
     position: relative;
     width: 100%;
@@ -116,7 +111,6 @@
     display: block;
 }
 
-/* ===== 멘트 오버레이 (사진 위에 반투명으로 덮음) ===== */
 .team-stats {
     position: absolute;
     inset: 0;
@@ -127,7 +121,6 @@
     align-items: center;
     padding: 28px 24px 56px;
     color: var(--text);
-    /* 사진을 어둡게 가려 가독성 확보 */
     background: linear-gradient(160deg, rgba(7, 16, 31, 0.86), rgba(9, 13, 37, 0.9));
     backdrop-filter: blur(4px);
 }
@@ -136,7 +129,6 @@
     display: none;
 }
 
-/* 멘트 — 따옴표로 감싼 한마디 */
 .team-quote {
     position: relative;
     font-size: 16px;
@@ -148,21 +140,25 @@
 }
 
 .team-quote::before {
-    content: "\201C";   /* 여는 큰따옴표 “ */
+    content: "\201C";
 }
 
 .team-quote::after {
-    content: "\201D";   /* 닫는 큰따옴표 ” */
+    content: "\201D";
 }
 
-/* 펼칠 때 부드럽게 등장 */
 .team-card.is-open .team-stats {
     animation: teamStatsIn 0.3s ease both;
 }
 
 @keyframes teamStatsIn {
-    from { opacity: 0; }
-    to   { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -171,7 +167,6 @@
     }
 }
 
-/* 이름/학번/학과 */
 .team-card-id {
     min-width: 0;
     padding-bottom: 16px;
@@ -189,7 +184,6 @@
     color: var(--text);
 }
 
-/* 역할 배지 */
 .team-card-role {
     padding: 3px 10px;
     border-radius: 999px;
@@ -226,17 +220,28 @@
     border: 1px solid rgba(255, 255, 255, 0.22);
 }
 
-/* 레벨별 색상 — 블루(안정) → 퍼플(위험) */
-.team-card-level.lv1 { background: rgba(96, 165, 250, 0.32); }
-.team-card-level.lv2 { background: rgba(56, 189, 248, 0.32); }
-.team-card-level.lv3 { background: rgba(129, 140, 248, 0.38); }
-.team-card-level.lv4 { background: rgba(167, 139, 250, 0.42); }
+.team-card-level.lv1 {
+    background: rgba(96, 165, 250, 0.32);
+}
+
+.team-card-level.lv2 {
+    background: rgba(56, 189, 248, 0.32);
+}
+
+.team-card-level.lv3 {
+    background: rgba(129, 140, 248, 0.38);
+}
+
+.team-card-level.lv4 {
+    background: rgba(167, 139, 250, 0.42);
+}
+
 .team-card-level.lv5 {
     background: rgba(192, 132, 252, 0.48);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 0 18px rgba(192, 132, 252, 0.45);
 }
 
-/* ===== 진단 결과 토글 버튼 — 사진 칸 안 좌하단 pill ===== */
+/* ===== 진단 결과 토글 버튼 ===== */
 .team-toggle {
     position: absolute;
     left: 12px;
@@ -269,18 +274,16 @@
     line-height: 1;
 }
 
-/* 펼친 상태에서는 닫기 버튼이 결과 위로 잘 보이게 */
 .team-card.is-open .team-toggle {
     background: rgba(7, 16, 31, 0.72);
 }
 
-/* ===== 태블릿 (2열) ===== */
+/* ===== 태블릿 ===== */
 @media (max-width: 1024px) {
     .team-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    /* 6칸 오프셋 리셋 → 일반 2열 흐름 */
     .team-card,
     .team-card:nth-child(4),
     .team-card:nth-child(5) {
@@ -288,7 +291,7 @@
     }
 }
 
-/* ===== 모바일 (1열) ===== */
+/* ===== 모바일 ===== */
 @media (max-width: 768px) {
     .team-main {
         padding: 36px 16px 60px;

@@ -6,11 +6,9 @@ const resultModal = document.querySelector("#resultModal");
 const levelMessage = document.querySelector("#levelMessage");
 const levelNickname = document.querySelector("#levelNickname");
 const resultModalClose = document.querySelector("#resultModalClose");
-const menuToggle = document.querySelector("#menuToggle");
-const navigation = document.querySelector("#mainNav");
 const resultSection = document.querySelector(".result");
 const scores = Array(questions.length).fill(0);
-const diagnosisStorageKey = "twoAmDiagnosisResult";
+const formDiagnosisStorageKey = "twoAmDiagnosisResult";
 
 function updateCard(cardIndex, title, width, description) {
     const card = cards[cardIndex];
@@ -102,15 +100,8 @@ document.addEventListener("keydown", (event) => {
     }
 });
 
-menuToggle.addEventListener("click", () => {
-    const isOpen = navigation.classList.toggle("show");
-
-    menuToggle.setAttribute("aria-expanded", String(isOpen));
-    menuToggle.setAttribute("aria-label", isOpen ? "메뉴 닫기" : "메뉴 열기");
-});
-
 function restoreSavedDiagnosisResult() {
-    const savedResult = localStorage.getItem(diagnosisStorageKey);
+    const savedResult = localStorage.getItem(formDiagnosisStorageKey);
 
     if (!savedResult) {
         return;
@@ -162,7 +153,7 @@ function restoreSavedDiagnosisResult() {
             result.snsText || "감성 글 업로드 여부를 판단합니다.",
         );
     } catch {
-        localStorage.removeItem(diagnosisStorageKey);
+        localStorage.removeItem(formDiagnosisStorageKey);
     }
 }
 
@@ -222,7 +213,7 @@ function getResultText(percent) {
 }
 
 function saveDiagnosisResult(result) {
-    localStorage.setItem(diagnosisStorageKey, JSON.stringify({
+    localStorage.setItem(formDiagnosisStorageKey, JSON.stringify({
         ...result,
         updatedAt: new Date().toISOString(),
     }));
